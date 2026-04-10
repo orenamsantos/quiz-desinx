@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desinx</title>
+  <meta name="description" content="Descubra por que seu corpo resiste a emagrecer e como inverter isso em 2 minutos.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/css/intlTelInput.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="quiz-container" id="app">
+
+    <!-- Progress Bar -->
+    <div class="progress-bar" id="progressBar">
+      <div class="progress-phase" data-phase="1">
+        <div class="progress-phase-label">Objetivo</div>
+        <div class="progress-phase-bar"></div>
+      </div>
+      <div class="progress-phase" data-phase="2">
+        <div class="progress-phase-label">Histórico</div>
+        <div class="progress-phase-bar"></div>
+      </div>
+      <div class="progress-phase" data-phase="3">
+        <div class="progress-phase-label">Estilo de Vida</div>
+        <div class="progress-phase-bar"></div>
+      </div>
+      <div class="progress-phase" data-phase="4">
+        <div class="progress-phase-label">Perfil</div>
+        <div class="progress-phase-bar"></div>
+      </div>
+    </div>
+
+    <!-- Quiz Steps (rendered by JS) -->
+    <div id="stepsContainer"></div>
+
+  </div>
+
+  <!-- Toast Notifications -->
+  <div class="toast" id="toast"></div>
+
+  <!-- Exit Intent Modal -->
+  <div class="exit-modal" id="exitModal">
+    <div class="exit-modal-content">
+      <button class="exit-close" onclick="closeExitModal()">×</button>
+      <div class="exit-icon">🎁</div>
+      <h2 class="exit-title">Espere! Não saia sem o seu resultado.</h2>
+      <p class="exit-desc">Você já chegou até aqui. Complete o perfil para liberar seu <strong>desconto especial</strong> e garantia de 7 dias!</p>
+      <button class="btn-primary" onclick="acceptExitOffer()">Continuar para o Resultado</button>
+      <button class="btn-text" onclick="closeExitModal()">Não, prefiro sair</button>
+    </div>
+  </div>
+
+  <!-- App Logic -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

@@ -770,7 +770,7 @@ function renderPricing() {
       <div class="price-card featured selected" data-plan="quarter" onclick="selectPlan(this)">
         <span class="badge">⭐ 93% ESCOLHEM ESTE</span>
         <div class="price-left"><span class="price-radio"></span><div><div class="price-name">Trimestral</div><div class="price-detail">Melhor custo-benefício</div></div></div>
-        <div class="price-right"><div class="price-value">R$ 19,90</div><div class="price-per">/mês (R$ 59,70)</div></div>
+        <div class="price-right"><div class="price-value">R$ 21,30</div><div class="price-per">/mês (R$ 59,70)</div></div>
       </div>
       <div class="price-card" data-plan="annual" onclick="selectPlan(this)">
         <span class="badge badge-economy">ECONOMIZE 57%</span>
@@ -791,7 +791,7 @@ function renderPricing() {
       </div>
     </div>
 
-    <button class="btn-primary" id="btnCheckout" onclick="goCheckout()">Começar agora — R$ 19,90/mês</button>
+    <button class="btn-primary" id="btnCheckout" onclick="goCheckout()">Começar agora — R$ 21,30/mês</button>
 
     <div class="payment-methods">
       <span style="display:flex;align-items:center;gap:4px">💳 Cartão</span>
@@ -1144,7 +1144,7 @@ function selectPlan(el) {
 
   const btn = document.getElementById('btnCheckout');
   const plan = el.dataset.plan;
-  const prices = { month: 'R$ 29,90/mês', quarter: 'R$ 19,90/mês', annual: 'R$ 16,00/mês' };
+  const prices = { month: 'R$ 29,90/mês', quarter: 'R$ 21,30/mês', annual: 'R$ 16,00/mês' };
   btn.textContent = `Começar agora — ${prices[plan]}`;
 }
 

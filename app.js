@@ -1151,9 +1151,18 @@ function selectPlan(el) {
 function goCheckout() {
   const selected = document.querySelector('.price-card.selected');
   const plan = selected ? selected.dataset.plan : 'quarter';
-  // In production: redirect to Stripe/payment
+  
+  // Checkout URLs by plan
+  const checkoutUrls = {
+    month: 'https://payment.ticto.app/O7406796A',
+    quarter: 'https://checkout.ticto.app/O131B466E',
+    annual: 'https://checkout.ticto.app/O167DA548'
+  };
+  
   console.log('[Checkout]', { plan, user: state.userData, answers: state.answers });
-  nextStep();
+  
+  // Redirect to checkout
+  window.location.href = checkoutUrls[plan];
 }
 
 function startTimer() {

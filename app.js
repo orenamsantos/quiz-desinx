@@ -1162,12 +1162,14 @@ function goCheckout() {
   if (!checkoutUrl) return;
 
   // Pré-preenche checkout com dados do quiz
-  const name = encodeURIComponent(state.userData.name || '');
-  const phone = encodeURIComponent((state.userData.whatsapp || '').replace(/^\+55/, ''));
+  const name = state.userData.name || '';
+  const rawPhone = state.userData.whatsapp || '';
+  // Remove tudo que não é dígito e tira o 55 do início (código do Brasil)
+  const phone = rawPhone.replace(/\D/g, '').replace(/^55/, '');
 
   let url = checkoutUrl;
   const params = [];
-  if (name)  params.push('name=' + name);
+  if (name)  params.push('name=' + encodeURIComponent(name));
   if (phone) params.push('phone=' + phone);
   if (params.length) url += '?' + params.join('&');
 

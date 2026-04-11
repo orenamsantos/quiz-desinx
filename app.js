@@ -1163,7 +1163,7 @@ function goCheckout() {
 
   // Pré-preenche checkout com dados do quiz
   const name = encodeURIComponent(state.userData.name || '');
-  const phone = encodeURIComponent(state.userData.whatsapp || '');
+  const phone = encodeURIComponent(state.userData.whatsapp || state.userData.phone || state.userData.tel || '');
 
   let url = checkoutUrl;
   const params = [];

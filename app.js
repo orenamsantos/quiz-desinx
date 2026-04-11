@@ -1151,18 +1151,27 @@ function selectPlan(el) {
 function goCheckout() {
   const selected = document.querySelector('.price-card.selected');
   const plan = selected ? selected.dataset.plan : 'quarter';
-  
-  // Checkout URLs by plan
+
   const checkoutUrls = {
-    month: 'https://payment.ticto.app/O7406796A',
+    month:   'https://checkout.ticto.app/O7406796A',
     quarter: 'https://checkout.ticto.app/O131B466E',
-    annual: 'https://checkout.ticto.app/O167DA548'
+    annual:  'https://checkout.ticto.app/O167DA548'
   };
-  
-  console.log('[Checkout]', { plan, user: state.userData, answers: state.answers });
-  
-  // Redirect to checkout
-  window.location.href = checkoutUrls[plan];
+
+  const checkoutUrl = checkoutUrls[plan];
+  if (!checkoutUrl) return;
+
+  // Pré-preenche checkout com dados do quiz
+  const name = encodeURIComponent(state.userData.name || '');
+  const phone = encodeURIComponent(state.userData.whatsapp || '');
+
+  let url = checkoutUrl;
+  const params = [];
+  if (name)  params.push('name=' + name);
+  if (phone) params.push('phone=' + phone);
+  if (params.length) url += '?' + params.join('&');
+
+  window.location.href = url;
 }
 
 function startTimer() {

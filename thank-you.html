@@ -77,6 +77,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .upsell-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;margin:0 0 8px}
 .upsell-desc{font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 6px}
 .upsell-stat{font-size:13px;color:var(--green);font-weight:600;margin:10px 0 14px}
+.upsell-includes{text-align:left;margin:14px 0}
+.upsell-item{font-size:13px;color:var(--text);line-height:1.6;padding:3px 0}
 .upsell-price{margin:14px 0}
 .upsell-price .old{font-size:16px;color:var(--muted);text-decoration:line-through}
 .upsell-price .new{font-size:28px;font-weight:700;color:var(--coral);margin-left:8px}
@@ -159,15 +161,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
       <div class="upsell-header-timer">Expira em <span id="upsellTimer">10:00</span></div>
     </div>
     <div class="upsell-body">
-      <h2 class="upsell-title">🍽️ Guia de 50+ Receitas que Aceleram o Metabolismo</h2>
-      <p class="upsell-desc">Receitas práticas de até 15 min que potencializam os resultados do Protocolo. Café da manhã, almoço, jantar e lanches — tudo pensado para destravar seu metabolismo.</p>
-      <p class="upsell-stat" id="upsellStat">📊 Mulheres que adicionam o Guia perdem em média 40% mais peso nas primeiras 4 semanas.</p>
+      <h2 class="upsell-title">🔒 Guia Anti-Rebote: Como Manter o Peso Pra Sempre</h2>
+      <p class="upsell-desc">O maior medo de quem emagrece é voltar a engordar. Esse guia te ensina exatamente o que fazer <strong>depois</strong> do Protocolo pra manter o resultado pro resto da vida — sem dieta eterna, sem neura.</p>
+      <div class="upsell-includes">
+        <div class="upsell-item">✅ Plano de manutenção de 90 dias pós-protocolo</div>
+        <div class="upsell-item">✅ Lista de alimentos "escudo" anti-rebote</div>
+        <div class="upsell-item">✅ Protocolo de emergência: como reverter em 48h se escorregar</div>
+        <div class="upsell-item">✅ Checklist semanal de manutenção</div>
+      </div>
+      <p class="upsell-stat" id="upsellStat">📊 82% das mulheres que usam o Guia Anti-Rebote mantêm o peso por 6+ meses após o Protocolo.</p>
       <div class="upsell-price">
         <span class="old">R$ 47,00</span>
         <span class="new">R$ 14,90</span>
       </div>
-      <a href="#" class="upsell-btn" id="upsellBtn">Adicionar ao meu plano — R$ 14,90</a>
-      <button class="upsell-skip" onclick="skipUpsell()">Não, obrigada — quero só o Protocolo</button>
+      <a href="#" class="upsell-btn" id="upsellBtn">Garantir meu Guia Anti-Rebote — R$ 14,90</a>
+      <button class="upsell-skip" onclick="skipUpsell()">Não, obrigada — vou só com o Protocolo</button>
     </div>
   </div>
 
@@ -202,14 +210,7 @@ const appUrl = appParams.toString() ? `${appBase}?${appParams}` : appBase;
 document.getElementById('appLink').href = appUrl;
 
 // Upsell button — replace with Ticto one-click-buy link
-document.getElementById('upsellBtn').href = '#';  // TODO: Replace with Ticto upsell offer link
-
-// Personalize upsell with areas from quiz
-const areas = params.get('areas');
-if (areas && decodeURIComponent(areas).trim()) {
-  document.getElementById('upsellStat').innerHTML =
-    `📊 As receitas foram selecionadas pra acelerar resultados em <strong>${decodeURIComponent(areas).trim()}</strong>. Quem adiciona o Guia perde em média 40% mais peso.`;
-}
+document.getElementById('upsellBtn').href = '#';  // TODO: Replace with Ticto upsell offer link for Guia Anti-Rebote
 
 // Upsell countdown timer
 let upsellSeconds = 10 * 60;

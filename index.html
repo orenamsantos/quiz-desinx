@@ -2736,6 +2736,7 @@ function goCheckout() {
   const selected = document.querySelector('.price-card.selected');
   const plan = selected ? selected.dataset.plan : 'premium';
 
+  // TODO: Criar as 2 ofertas na Ticto como pagamento único e colar os links aqui
   const checkoutLinks = {
     essential: 'https://checkout.ticto.app/OF0C63DF7',
     premium:   'https://checkout.ticto.app/OBC594508',

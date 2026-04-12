@@ -1,5 +1,6 @@
 /* =============================================
-   Protocolo Desinx — App Logic
+   Protocolo Desinx — App Logic v2.0
+   Direct Response / High-Conversion Rewrite
    ============================================= */
 
 
@@ -7,42 +8,42 @@
    1. TESTIMONIALS POOL (15 unique)
    ============================================= */
 
+function makeAvatar(name, hue) {
+  return `data:image/svg+xml,${encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80"><rect fill="hsl(${hue},45%,88%)" width="80" height="80" rx="40"/><text x="50%" y="54%" text-anchor="middle" dominant-baseline="middle" fill="hsl(${hue},40%,40%)" font-family="sans-serif" font-size="32" font-weight="600">${name[0]}</text></svg>`)}`;
+}
+
 const TESTIMONIALS = [
-  { name: 'Camila R.',   age: 34, job: 'analista de marketing, mãe de 2', text: 'Perdi 8kg em 6 semanas sem academia. Meu marido perguntou o que eu estava fazendo de diferente.', stars: 5,   av: 'https://i.pravatar.cc/80?img=1' },
-  { name: 'Patrícia M.', age: 41, job: 'professora',                      text: 'Pela primeira vez em 10 anos, não voltei a engordar. O Protocolo mudou minha relação com a balança.',   stars: 5,   av: 'https://i.pravatar.cc/80?img=5' },
-  { name: 'Fernanda L.', age: 29, job: 'designer freelancer',             text: 'O inchaço sumiu na segunda semana. Minhas calças voltaram a servir.',                                   stars: 5,   av: 'https://i.pravatar.cc/80?img=9' },
-  { name: 'Juliana S.',  age: 37, job: 'advogada',                        text: 'Gastei uma fortuna em nutri e academia. Aqui tive resultado em 3 semanas pagando o preço de um café.',   stars: 5,   av: 'https://i.pravatar.cc/80?img=16' },
-  { name: 'Renata C.',   age: 45, job: 'enfermeira, mãe de 3',            text: 'Com 3 filhos e plantão, eu achava impossível. 15 minutos por dia foi tudo que precisei.',                stars: 5,   av: 'https://i.pravatar.cc/80?img=20' },
-  { name: 'Aline F.',    age: 32, job: 'empreendedora',                   text: 'Eliminei 6kg sem cortar o que amo comer. O segredo é a ordem, não a restrição.',                         stars: 4.5, av: 'https://i.pravatar.cc/80?img=23' },
-  { name: 'Mariana D.',  age: 38, job: 'gerente de RH',                   text: 'Minha energia voltou no dia 4. Parece exagero, mas é real. Eu tinha esquecido como era ter disposição.', stars: 5,   av: 'https://i.pravatar.cc/80?img=25' },
-  { name: 'Beatriz O.',  age: 27, job: 'estudante de medicina',           text: 'Eu estudava emagrecimento e mesmo assim não conseguia. O Protocolo me mostrou o que eu fazia na ordem errada.', stars: 4.5, av: 'https://i.pravatar.cc/80?img=32' },
-  { name: 'Carla T.',    age: 43, job: 'servidora pública',               text: 'Meu metabolismo parecia morto. Na segunda semana eu já sentia diferença na roupa e no espelho.',         stars: 5,   av: 'https://i.pravatar.cc/80?img=36' },
-  { name: 'Débora N.',   age: 31, job: 'fotógrafa',                       text: 'Já tinha tentado 4 apps diferentes. Esse foi o primeiro que eu terminei a primeira semana inteira.',     stars: 4.5, av: 'https://i.pravatar.cc/80?img=38' },
-  { name: 'Larissa P.',  age: 36, job: 'dentista, mãe de 1',              text: 'Perdi a barriga pós-parto que tinha há 2 anos. Minha autoestima voltou junto com as roupas antigas.',    stars: 5,   av: 'https://i.pravatar.cc/80?img=41' },
-  { name: 'Priscila V.', age: 44, job: 'professora de yoga',              text: 'Mesmo como instrutora, eu não conseguia perder peso. O Protocolo completou o que faltava.',              stars: 5,   av: 'https://i.pravatar.cc/80?img=44' },
-  { name: 'Gabriela M.', age: 28, job: 'social media',                    text: 'Minha chefe perguntou se eu fiz lipo. Foram 7kg em 5 semanas. Sem cirurgia, sem sofrimento.',           stars: 5,   av: 'https://i.pravatar.cc/80?img=47' },
-  { name: 'Tatiane R.',  age: 39, job: 'bancária',                        text: 'Eu vivia inchada e cansada. Na primeira fase meu corpo desinflou de um jeito que nunca tinha acontecido.', stars: 4.5, av: 'https://i.pravatar.cc/80?img=48' },
-  { name: 'Sandra K.',   age: 52, job: 'empresária',                      text: 'Com 52 anos eu achei que meu metabolismo tinha aposentado. O Protocolo provou que eu estava errada.',    stars: 5,   av: 'https://i.pravatar.cc/80?img=49' },
+  { name: 'Camila R.',   age: 34, job: 'analista de marketing, mãe de 2', text: 'Perdi 8kg em 6 semanas sem academia. Meu marido perguntou o que eu estava fazendo de diferente.', stars: 5,   av: makeAvatar('C', 340) },
+  { name: 'Patrícia M.', age: 41, job: 'professora',                      text: 'Pela primeira vez em 10 anos, não voltei a engordar. O Protocolo mudou minha relação com a balança.',   stars: 5,   av: makeAvatar('P', 260) },
+  { name: 'Fernanda L.', age: 29, job: 'designer freelancer',             text: 'O inchaço sumiu na segunda semana. Minhas calças voltaram a servir.',                                   stars: 5,   av: makeAvatar('F', 180) },
+  { name: 'Juliana S.',  age: 37, job: 'advogada',                        text: 'Gastei uma fortuna em nutri e academia. Aqui tive resultado em 3 semanas pagando o preço de um café.',   stars: 5,   av: makeAvatar('J', 30) },
+  { name: 'Renata C.',   age: 45, job: 'enfermeira, mãe de 3',            text: 'Com 3 filhos e plantão, eu achava impossível. 15 minutos por dia foi tudo que precisei.',                stars: 5,   av: makeAvatar('R', 150) },
+  { name: 'Aline F.',    age: 32, job: 'empreendedora',                   text: 'Eliminei 6kg sem cortar o que amo comer. O segredo é a ordem, não a restrição.',                         stars: 4.5, av: makeAvatar('A', 200) },
+  { name: 'Mariana D.',  age: 38, job: 'gerente de RH',                   text: 'Minha energia voltou no dia 4. Parece exagero, mas é real. Eu tinha esquecido como era ter disposição.', stars: 5,   av: makeAvatar('M', 280) },
+  { name: 'Beatriz O.',  age: 27, job: 'estudante de medicina',           text: 'Eu estudava emagrecimento e mesmo assim não conseguia. O Protocolo me mostrou o que eu fazia na ordem errada.', stars: 4.5, av: makeAvatar('B', 45) },
+  { name: 'Carla T.',    age: 43, job: 'servidora pública',               text: 'Meu metabolismo parecia morto. Na segunda semana eu já sentia diferença na roupa e no espelho.',         stars: 5,   av: makeAvatar('C', 120) },
+  { name: 'Débora N.',   age: 31, job: 'fotógrafa',                       text: 'Já tinha tentado 4 apps diferentes. Esse foi o primeiro que eu terminei a primeira semana inteira.',     stars: 4.5, av: makeAvatar('D', 310) },
+  { name: 'Larissa P.',  age: 36, job: 'dentista, mãe de 1',              text: 'Perdi a barriga pós-parto que tinha há 2 anos. Minha autoestima voltou junto com as roupas antigas.',    stars: 5,   av: makeAvatar('L', 80) },
+  { name: 'Priscila V.', age: 44, job: 'professora de yoga',              text: 'Mesmo como instrutora, eu não conseguia perder peso. O Protocolo completou o que faltava.',              stars: 5,   av: makeAvatar('P', 160) },
+  { name: 'Gabriela M.', age: 28, job: 'social media',                    text: 'Minha chefe perguntou se eu fiz lipo. Foram 7kg em 5 semanas. Sem cirurgia, sem sofrimento.',           stars: 5,   av: makeAvatar('G', 220) },
+  { name: 'Tatiane R.',  age: 39, job: 'bancária',                        text: 'Eu vivia inchada e cansada. Na primeira fase meu corpo desinflou de um jeito que nunca tinha acontecido.', stars: 4.5, av: makeAvatar('T', 10) },
+  { name: 'Sandra K.',   age: 52, job: 'empresária',                      text: 'Com 52 anos eu achei que meu metabolismo tinha aposentado. O Protocolo provou que eu estava errada.',    stars: 5,   av: makeAvatar('S', 250) },
 ];
 
 function renderStars(rating) {
   let html = '';
   const full = Math.floor(rating);
   const hasHalf = rating % 1 !== 0;
-
   for (let i = 0; i < full; i++) html += '★';
-
   if (hasHalf) {
     html += '<span style="position:relative;display:inline-block">'
           + '<span style="color:#E5E7EB">★</span>'
           + '<span style="position:absolute;left:0;top:0;width:55%;overflow:hidden;color:#F59E0B">★</span>'
           + '</span>';
   }
-
   for (let i = 0; i < 5 - full - (hasHalf ? 1 : 0); i++) {
     html += '<span style="color:#E5E7EB">★</span>';
   }
-
   return html;
 }
 
@@ -50,22 +51,17 @@ let _usedTestimonials = new Set();
 
 function getRandomTestimonials(count) {
   const available = [];
-
   for (let i = 0; i < TESTIMONIALS.length; i++) {
     if (!_usedTestimonials.has(i)) available.push(i);
   }
-
   if (available.length < count) {
     _usedTestimonials.clear();
     for (let i = 0; i < TESTIMONIALS.length; i++) available.push(i);
   }
-
-  // Fisher-Yates shuffle
   for (let i = available.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
     [available[i], available[j]] = [available[j], available[i]];
   }
-
   const picked = available.slice(0, count);
   picked.forEach(i => _usedTestimonials.add(i));
   return picked.map(i => TESTIMONIALS[i]);
@@ -105,46 +101,31 @@ function renderPricingReviews(count = 3) {
 
 
 /* =============================================
-   2. HEADLINES POOL (10 headlines + 10 subheadlines)
+   2. HEADLINES — PAIN-SPECIFIC, IDENTITY-DRIVEN
    ============================================= */
 
 const HEADLINES = [
-  'Ninguém te contou isso sobre emagrecimento <span class="rw" id="rw">até agora</span>',
-  'O protocolo simples que está <span class="rw" id="rw">confundindo nutricionistas</span>',
-  'Seu metabolismo não é lento. Está <span class="rw" id="rw">travado</span>.',
-  'Por que você não emagrece mesmo fazendo <span class="rw" id="rw">tudo certo</span>?',
-  'O erro invisível que sabota 93% das mulheres que tentam <span class="rw" id="rw">perder peso</span>',
-  'Elas emagreceram sem dieta, sem academia e sem <span class="rw" id="rw">passar fome</span>',
-  'Antes de tentar mais uma dieta, <span class="rw" id="rw">leia isso</span>.',
-  'O método que inverte a lógica do emagrecimento e funciona em <span class="rw" id="rw">14 dias</span>',
-  'Esqueça tudo que te ensinaram sobre <span class="rw" id="rw">perder peso</span>.',
-  'A razão científica pela qual seu corpo <span class="rw" id="rw">resiste a emagrecer</span>',
+  'Você faz dieta, treina, conta caloria — e a balança <span class="rw" id="rw">não mexe</span>.',
+  'Seu corpo não está contra você. Está <span class="rw" id="rw">travado</span>.',
+  '93% das mulheres que não emagrecem cometem o mesmo <span class="rw" id="rw">erro invisível</span>',
+  'O problema nunca foi disciplina. Foi <span class="rw" id="rw">sequência</span>.',
+  'Existe uma razão biológica pela qual nenhuma dieta funcionou <span class="rw" id="rw">pra você</span>',
 ];
 
 const SUBHEADLINES = [
-  'Faça o quiz de 2 minutos e descubra o que realmente trava seu metabolismo — e como destravar ainda essa semana.',
-  'Responda 7 perguntas e receba um protocolo personalizado que já ajudou mais de 12.000 mulheres.',
-  'Descubra em 2 minutos por que nenhuma dieta funcionou — e o que fazer no lugar.',
-  'Seu corpo está pedindo uma coisa. Você está dando outra. Esse quiz mostra exatamente o quê.',
-  'O quiz gratuito que revela o bloqueio metabólico que ninguém te contou que existe.',
-  'Não é falta de disciplina. É falta de sequência. Descubra a ordem certa em 2 minutos.',
-  'Mais de 12.000 mulheres descobriram por que não emagreciam. Você pode ser a próxima.',
-  'Resultados em 14 dias, sem academia, sem receitas complicadas. Comece pelo quiz.',
-  'Seu plano personalizado está a 2 minutos de distância. Responda e veja o que muda.',
-  'A chave não é comer menos. É destravar primeiro. Descubra como no quiz gratuito.',
+  'Responda 7 perguntas em 2 minutos. Descubra o que realmente trava seu metabolismo — e como destravar ainda essa semana.',
+  'Mais de 12.847 mulheres já descobriram o bloqueio que nenhum nutricionista encontrou. Faça o teste gratuito.',
+  'Seu corpo está pedindo uma coisa. Você está dando outra. Esse teste revela exatamente o quê — em 2 minutos.',
+  'Antes de tentar mais uma dieta, descubra por que as anteriores falharam. Teste gratuito de 2 minutos.',
+  'Não é falta de esforço. É um bloqueio metabólico que 93% das mulheres nem sabem que têm. Descubra o seu.',
 ];
 
 const ROTATING_WORDS = {
-  0: ['até agora', 'e você vai entender por quê', 'mas agora vai'],
-  1: ['confundindo nutricionistas', 'surpreendendo endocrinologistas', 'virando o jogo'],
-  2: ['travado', 'bloqueado', 'adormecido'],
-  3: ['tudo certo', 'dieta certinha', 'exercício todo dia'],
-  4: ['perder peso', 'emagrecer', 'secar a barriga'],
-  5: ['passar fome', 'sofrer', 'se privar'],
-  6: ['leia isso', 'assista isso', 'descubra isso'],
-  7: ['14 dias', '2 semanas', 'poucos dias'],
-  8: ['perder peso', 'emagrecer', 'queimar gordura'],
-  9: ['resiste a emagrecer', 'trava no mesmo peso', 'não responde a dietas'],
+  0: ['não mexe', 'trava no mesmo número', 'não responde'],
+  1: ['travado', 'em modo de proteção', 'adormecido'],
+  2: ['erro invisível', 'bloqueio oculto', 'sabotador silencioso'],
+  3: ['sequência', 'a ordem que você faz', 'o passo que você pula'],
+  4: ['pra você', 'até agora', 'sozinha'],
 };
 
 const headlineIndex = Math.floor(Math.random() * HEADLINES.length);
@@ -152,7 +133,92 @@ const subheadlineIndex = Math.floor(Math.random() * SUBHEADLINES.length);
 
 
 /* =============================================
-   3. STATE
+   3. DYNAMIC POST-SELECT FEEDBACK MAP
+   ============================================= */
+
+const DYNAMIC_FEEDBACK = {
+  'objetivo': {
+    'Perder peso': '87% das mulheres que chegam aqui marcam essa opção — e quase todas tinham o mesmo bloqueio invisível.',
+    'Definir o corpo': 'Definição sem destravar o metabolismo é como pintar uma parede mofada. Primeiro, a gente resolve a base.',
+    'Eliminar inchaço e retenção': 'O inchaço é o primeiro sinal de que algo está errado por dentro. Bom — é também o primeiro a sumir.',
+    'Ter mais energia e disposição': 'Falta de energia é sintoma clássico de metabolismo em modo de sobrevivência. Você está no lugar certo.',
+    'Me sentir bem comigo mesma': 'Tudo começa por dentro. Quando o corpo funciona, a autoestima volta sozinha.',
+  },
+  'frustracao': {
+    'Faço dieta mas não perco peso': '⚠️ Isso não é falta de esforço. É o sinal mais claro de que seu metabolismo está operando em modo de sobrevivência.',
+    'Perco e depois recupero tudo': '⚠️ Efeito rebote. Acontece quando você força a perda sem destravar primeiro. Seu corpo entende restrição como ameaça.',
+    'Sinto muita fome e desisto': '⚠️ Fome incontrolável é sinal hormonal — leptina e grelina desreguladas. Não é fraqueza. É química.',
+    'Não tenho tempo pra rotinas complicadas': '⚠️ O Protocolo foi desenhado pra quem tem menos de 15 minutos por dia. Rotina complicada é o motivo pelo qual os outros métodos falham.',
+    'Não sei por onde começar': '⚠️ A confusão é proposital. A indústria lucra com você perdida. Aqui, o caminho é um só — e é simples.',
+  },
+  'corpo': {
+    '_default': 'Sem julgamento. Essa informação calibra o protocolo pro seu corpo real — não pra um corpo genérico.',
+  },
+  'resultado-tentativas': {
+    'Perdi pouco e parei': 'Seu corpo entrou em modo de defesa. Quando detecta restrição, ele freia tudo. É o sinal clássico de metabolismo travado.',
+    'Emagreci mas voltei a engordar': 'Efeito rebote. Você perdeu peso sem destravar o metabolismo — e ele puxou tudo de volta como autodefesa.',
+    'Não vi resultado nenhum': 'Quando absolutamente nada funciona, o problema nunca é esforço. É a sequência. Você estava fazendo as coisas certas na ordem errada.',
+    'Nunca mantive tempo suficiente': 'Os métodos antigos exigem semanas de sofrimento antes do primeiro resultado. Aqui, a diferença aparece nos primeiros 7 dias.',
+    'Tive bons resultados mas quero mais': 'Ótimo sinal. Seu metabolismo ainda responde — agora é questão de potencializar com a sequência certa.',
+  },
+  'trava': {
+    'Meu metabolismo é muito lento': 'Seu metabolismo não é lento. Está em modo de proteção. O Pilar 1 do Protocolo foi desenhado pra reverter exatamente isso em 7 a 14 dias.',
+    'Não consigo controlar a fome': 'Fome descontrolada = leptina em colapso. Não é falta de vontade. O Pilar 1 reseta esses sinais em 5-7 dias.',
+    'Falta de motivação': 'Motivação acaba. Método, não. O Protocolo não depende de força de vontade — depende de sequência.',
+    'Não sei o que fiz de errado': 'Provavelmente nada de errado. Só na ordem errada. É como montar um móvel pulando os 3 primeiros passos.',
+    'Acho que é hormonal': 'Provavelmente é. Cortisol, insulina, leptina — quando estão desregulados, nenhuma dieta funciona. O Protocolo começa por aí.',
+  },
+  'atividade': {
+    'Sedentária (quase nenhuma atividade)': 'O Protocolo não exige treino. Os micro-exercícios de 12 min são opcionais e feitos no seu quarto.',
+    'Leve (caminhadas, tarefas do dia)': 'Esse nível já ajuda. Com o metabolismo destravado, até a caminhada leve vira queima ativa.',
+    'Moderada (treino 2-3x por semana)': 'Você já treina e não vê resultado? Isso confirma: o problema não é exercício. É o que acontece antes dele.',
+    'Intensa (treino 4+ vezes por semana)': 'Se você treina forte e não perde peso, seu metabolismo está em modo de sobrevivência. Treino sozinho não resolve — destravar vem primeiro.',
+  },
+  'alimentacao': {
+    'Como de tudo, sem regra': 'Você não precisa mudar tudo. Precisa mudar a ordem. 3 ajustes na sequência alimentar mudam mais que qualquer dieta.',
+    'Tento comer saudável mas escorrego': 'O "escorrego" não é falta de disciplina — é seu corpo gritando por algo que falta. O Protocolo elimina isso na raiz.',
+    'Sigo uma dieta com alguma disciplina': 'Se você já tem disciplina e não vê resultado, o problema não é o que você come. É a sequência metabólica.',
+    'Não sei se como bem ou mal': 'Essa confusão é comum. A indústria de dietas lucra com informação contraditória. Aqui, é direto ao ponto.',
+    'Sei que como mal mas não consigo mudar': 'Você não precisa virar outra pessoa. O Protocolo funciona com ajustes mínimos — na ordem certa.',
+  },
+  'rotina': {
+    '_default': 'Essa informação define qual das 4 versões do protocolo você vai receber.',
+  },
+  'tempo': {
+    'Menos de 15 minutos': 'Anotado. Seu protocolo será montado pra caber em menos de 15 minutos por dia. Sem academia, sem receitas de 2 horas.',
+    '15 a 30 minutos': 'Tempo ideal. 80% das mulheres que tiveram resultado investiam exatamente isso.',
+    '30 minutos a 1 hora': 'Ótimo — com esse tempo, a versão avançada do Protocolo vai acelerar seus resultados.',
+    'Mais de 1 hora': 'Com esse tempo, seu protocolo pode incluir os módulos bônus de aceleração.',
+  },
+  'restricoes': {
+    '_default': 'Registrado. Todas as recomendações vão respeitar suas restrições — nada genérico, nada que coloque sua saúde em risco.',
+  },
+  'sono': {
+    'Durmo bem, acordo disposta': 'Excelente. Sono bom = cortisol controlado = metabolismo mais responsivo. Você tem uma vantagem.',
+    'Durmo mas acordo cansada': '⚠️ Acordar cansada mesmo dormindo indica cortisol elevado à noite. Isso trava a queima de gordura por até 14 horas. O Pilar 2 ataca exatamente isso.',
+    'Tenho dificuldade pra dormir': '⚠️ Insônia dispara cortisol, que aumenta a fome e trava o metabolismo. O Pilar 2 do Protocolo foi desenhado pra corrigir isso antes de qualquer dieta.',
+    'Durmo pouco (menos de 6h)': '⚠️ Menos de 6h de sono aumenta a fome em até 45% e reduz a queima calórica em 20%. Seu corpo está em modo de emergência. O Protocolo começa por aqui.',
+  },
+  'idade': {
+    '18 – 24 anos': 'Nessa faixa, o metabolismo responde rápido. Se está travado agora, a janela de correção é curta — mas ainda está 100% aberta.',
+    '25 – 34 anos': 'Essa é a faixa onde pequenas correções geram grandes resultados. Seu corpo ainda responde bem — se você souber a sequência.',
+    '35 – 44 anos': 'Essa é a faixa onde o metabolismo mais responde ao Protocolo. A janela de ativação hormonal ainda está aberta — mas está fechando.',
+    '45 – 54 anos': 'Depois dos 45, cada mês sem destravar torna a correção mais lenta. A boa notícia: o Protocolo foi calibrado pra essa faixa.',
+    '55+ anos': 'Seu metabolismo não aposentou. Ele está em modo de proteção há anos. O Pilar 1 acorda ele de volta — em qualquer idade.',
+  },
+};
+
+function getDynamicFeedback(stepId, value) {
+  const map = DYNAMIC_FEEDBACK[stepId];
+  if (!map) return null;
+  if (map[value]) return map[value];
+  if (map['_default']) return map['_default'];
+  return null;
+}
+
+
+/* =============================================
+   4. STATE
    ============================================= */
 
 const state = {
@@ -165,17 +231,17 @@ const state = {
 
 
 /* =============================================
-   4. QUIZ STEPS DATA
+   5. QUIZ STEPS DATA — REWRITTEN COPY
    ============================================= */
 
 const steps = [
   // START
   { id: 'start', phase: 0, type: 'start' },
 
-  // PHASE 1 — OBJETIVO
+  // PHASE 1 — DIAGNÓSTICO (was "Objetivo")
   {
     id: 'objetivo', phase: 1, type: 'single',
-    question: 'Qual é o seu objetivo principal agora?',
+    question: 'O que você mais quer resolver agora no seu corpo?',
     options: [
       { icon: '🎯', label: 'Perder peso' },
       { icon: '💪', label: 'Definir o corpo' },
@@ -186,7 +252,8 @@ const steps = [
   },
   {
     id: 'frustracao', phase: 1, type: 'single',
-    question: 'O que mais te frustra quando tenta emagrecer?',
+    preHeadline: 'Entendi. Agora preciso saber o que está travando você.',
+    question: 'Qual dessas situações mais te descreve?',
     options: [
       { icon: '😤', label: 'Faço dieta mas não perco peso' },
       { icon: '🔄', label: 'Perco e depois recupero tudo' },
@@ -197,6 +264,7 @@ const steps = [
   },
   {
     id: 'corpo', phase: 1, type: 'single',
+    preHeadline: 'Sem julgamento — isso calibra o protocolo pro seu corpo real.',
     question: 'Como você descreveria seu corpo hoje?',
     options: [
       { icon: '🪶', label: 'Magra mas flácida' },
@@ -209,8 +277,8 @@ const steps = [
   },
   {
     id: 'areas', phase: 1, type: 'multi',
-    question: 'Quais são as áreas que mais te incomodam?',
-    microcopy: 'Selecione todas que se aplicam',
+    question: 'Quais áreas do corpo mais te incomodam?',
+    microcopy: 'Selecione todas — o protocolo vai priorizar pela ordem de impacto.',
     options: [
       { icon: '🫃', label: 'Barriga' },
       { icon: '🦵', label: 'Coxas' },
@@ -219,12 +287,15 @@ const steps = [
       { icon: '😮‍💨', label: 'Inchaço geral' },
       { icon: '✨', label: 'Corpo inteiro' },
     ],
+    postSelect: 'Anotado. O protocolo vai atacar essas áreas na sequência certa — começando pelo que dá resultado mais rápido.',
   },
 
-  // PHASE 2 — HISTÓRICO
+  // PHASE 2 — HISTÓRICO DE FRACASSO
   {
     id: 'metodos', phase: 2, type: 'multi',
+    preHeadline: 'Vamos entender o que já não funcionou.',
     question: 'O que você já tentou para {objetivo}?',
+    microcopy: 'Selecione tudo que se aplica — sem julgamento.',
     options: [
       { icon: '📋', label: 'Dietas restritivas' },
       { icon: '💊', label: 'Chás, suplementos ou shakes' },
@@ -233,10 +304,11 @@ const steps = [
       { icon: '🍽️', label: 'Jejum intermitente' },
       { icon: '❌', label: 'Nunca tentei nada' },
     ],
+    postSelect: 'Você já investiu tempo, dinheiro e energia nisso. O problema nunca foi o que você tentou — foi a ordem em que fez.',
   },
   {
     id: 'resultado-tentativas', phase: 2, type: 'single',
-    question: 'Como foram seus resultados até agora?',
+    question: 'E qual foi o resultado de tudo isso?',
     options: [
       { icon: '😕', label: 'Perdi pouco e parei' },
       { icon: '🔄', label: 'Emagreci mas voltei a engordar' },
@@ -245,11 +317,14 @@ const steps = [
       { icon: '✅', label: 'Tive bons resultados mas quero mais' },
     ],
   },
+
+  // TRANSITION — after pain peak (moved here strategically)
+  { id: 'validacao', phase: 2, type: 'transition' },
+
   {
     id: 'trava', phase: 2, type: 'single', conditional: true,
-    preHeadline: 'Isso é mais comum do que você imagina.',
+    preHeadline: 'Isso acontece com 93% das mulheres. Você não é exceção — é a regra.',
     question: 'Na sua opinião, o que travou seu progresso?',
-    postSelect: 'A boa notícia: nada disso é permanente. O Protocolo trabalha exatamente nesse ponto.',
     options: [
       { icon: '🧬', label: 'Meu metabolismo é muito lento' },
       { icon: '🍫', label: 'Não consigo controlar a fome' },
@@ -270,7 +345,7 @@ const steps = [
   },
   {
     id: 'alimentacao', phase: 2, type: 'single',
-    question: 'Como você descreveria sua alimentação hoje?',
+    question: 'Como você descreveria sua alimentação?',
     options: [
       { icon: '🍔', label: 'Como de tudo, sem regra' },
       { icon: '🥗', label: 'Tento comer saudável mas escorrego' },
@@ -279,11 +354,11 @@ const steps = [
       { icon: '🍕', label: 'Sei que como mal mas não consigo mudar' },
     ],
   },
-  { id: 'validacao', phase: 2, type: 'transition' },
 
-  // PHASE 3 — ESTILO DE VIDA
+  // PHASE 3 — ESTILO DE VIDA (calibração)
   {
     id: 'rotina', phase: 3, type: 'single',
+    preHeadline: 'Agora vamos calibrar o protocolo pra sua realidade.',
     question: 'Como é sua rotina diária?',
     options: [
       { icon: '🏢', label: 'Trabalho sentada a maior parte do dia' },
@@ -294,8 +369,7 @@ const steps = [
   },
   {
     id: 'tempo', phase: 3, type: 'single',
-    question: 'Quanto tempo por dia você consegue dedicar ao seu plano?',
-    postSelect: 'Perfeito. O Protocolo se adapta ao seu tempo — sem exigir horas na cozinha ou academia.',
+    question: 'Quanto tempo por dia você consegue dedicar?',
     options: [
       { icon: '⏱️', label: 'Menos de 15 minutos' },
       { icon: '⏱️', label: '15 a 30 minutos' },
@@ -305,7 +379,7 @@ const steps = [
   },
   {
     id: 'restricoes', phase: 3, type: 'multi',
-    question: 'Você tem alguma restrição alimentar?',
+    question: 'Alguma restrição alimentar?',
     microcopy: 'Selecione todas que se aplicam',
     options: [
       { icon: '🥛', label: 'Intolerância à lactose' },
@@ -318,7 +392,7 @@ const steps = [
   },
   {
     id: 'sono', phase: 3, type: 'single',
-    question: 'Como está seu sono atualmente?',
+    question: 'Como está seu sono?',
     options: [
       { icon: '😴', label: 'Durmo bem, acordo disposta' },
       { icon: '😐', label: 'Durmo mas acordo cansada' },
@@ -330,7 +404,7 @@ const steps = [
   // PHASE 4 — PERFIL
   {
     id: 'idade', phase: 4, type: 'single',
-    question: 'Qual é a sua faixa etária?',
+    question: 'Qual sua faixa etária?',
     options: [
       { icon: '', label: '18 – 24 anos' },
       { icon: '', label: '25 – 34 anos' },
@@ -352,7 +426,7 @@ const steps = [
 
 
 /* =============================================
-   5. RENDER ENGINE
+   6. RENDER ENGINE
    ============================================= */
 
 function renderStep(idx) {
@@ -399,7 +473,6 @@ function renderStep(idx) {
 
   container.innerHTML = `<div class="step active">${html}</div>`;
 
-  // Bind events after render
   if (step.type === 'start')   bindStart();
   if (step.type === 'single')  bindSingle(step);
   if (step.type === 'multi')   bindMulti(step);
@@ -423,7 +496,7 @@ function trackStep(step) {
 
 
 /* =============================================
-   6. PROGRESS BAR
+   7. PROGRESS BAR
    ============================================= */
 
 function updateProgress(phase) {
@@ -433,40 +506,35 @@ function updateProgress(phase) {
     return;
   }
   bar.classList.add('visible');
-  
-  // Zeigarnik Effect: start at 15% minimum and scale the rest
   const basePercent = 15;
-  const rawPercent = (phase / 4) * 100; // Assuming 4 phases
+  const rawPercent = (phase / 4) * 100;
   const finalPercent = basePercent + (rawPercent * 0.85);
-  
+
   bar.querySelectorAll('.progress-phase').forEach(el => {
     const p = parseInt(el.dataset.phase);
     el.classList.toggle('active', p === phase);
     el.classList.toggle('done', p < phase);
   });
-  
-  // Update the fill bar width based on the new math
+
   const fill = bar.querySelector('.progress-fill');
-  if (fill) {
-    fill.style.width = finalPercent + '%';
-  }
+  if (fill) fill.style.width = finalPercent + '%';
 }
 
 
 /* =============================================
-   7. TOAST
+   8. TOAST
    ============================================= */
 
 function showToast(msg) {
   const toast = document.getElementById('toast');
-  toast.textContent = msg;
+  toast.innerHTML = msg;
   toast.classList.add('show');
-  setTimeout(() => toast.classList.remove('show'), 3500);
+  setTimeout(() => toast.classList.remove('show'), 4500);
 }
 
 
 /* =============================================
-   8. RENDERERS
+   9. RENDERERS — REWRITTEN COPY
    ============================================= */
 
 function renderStart() {
@@ -481,56 +549,25 @@ function renderStart() {
       <h1 class="start-headline">${HEADLINES[headlineIndex]}</h1>
       <p class="start-sub">${SUBHEADLINES[subheadlineIndex]}</p>
 
-      <button class="btn-primary" id="btnStart" onclick="handleStartClick()">
-        Quero meu plano personalizado
+      <button class="btn-primary" id="btnStart" onclick="nextStep()">
+        Descobrir o que trava meu corpo →
       </button>
 
-      <div style="margin:20px 0 16px">
-        ${renderReviewCards(3)}
-      </div>
+      <p style="font-size:12px;color:var(--text-light);text-align:center;margin-top:12px">
+        ⏱ Leva menos de 2 minutos · 100% gratuito · Sem cadastro
+      </p>
 
-      <div class="legal-wrap">
-        <label class="legal-check" id="legalLabel">
-          <input type="checkbox" id="legalCheckbox">
-          <span>Ao continuar, concordo com os <a href="https://inverta.app/termos" target="_blank" rel="noopener noreferrer">Termos de Uso</a> e <a href="https://inverta.app/privacidade" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.</span>
-        </label>
-        <div class="legal-error" id="legalError">
-          ⚠️ Você precisa aceitar os termos para continuar.
-        </div>
+      <div class="legal-wrap" style="margin-top:8px">
+        <p style="font-size:11px;color:var(--text-light);text-align:center">
+          Ao continuar, você concorda com os <a href="https://inverta.app/termos" target="_blank" rel="noopener noreferrer">Termos de Uso</a> e <a href="https://inverta.app/privacidade" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.
+        </p>
       </div>
     </div>
   `;
 }
 
-function handleStartClick() {
-  const checkbox = document.getElementById('legalCheckbox');
-  const label = document.getElementById('legalLabel');
-  const error = document.getElementById('legalError');
-
-  if (!checkbox.checked) {
-    label.classList.add('shake', 'error-state');
-    error.classList.add('visible');
-
-    // Scroll automático até o checkbox para garantir visibilidade
-    label.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-    setTimeout(() => label.classList.remove('shake'), 400);
-
-    checkbox.addEventListener('change', function handler() {
-      if (checkbox.checked) {
-        label.classList.remove('error-state');
-        error.classList.remove('visible');
-        checkbox.removeEventListener('change', handler);
-      }
-    });
-    return;
-  }
-
-  nextStep();
-}
-
 function bindStart() {
-  const words = ROTATING_WORDS[headlineIndex] || ['perder peso', 'eliminar inchaço', 'ter energia'];
+  const words = ROTATING_WORDS[headlineIndex] || ['não mexe', 'trava', 'resiste'];
   let wordIdx = 0;
   const el = document.getElementById('rw');
   if (!el) return;
@@ -567,6 +604,7 @@ function renderSingle(step) {
     ${pre}
     <h2 class="step-question">${question}</h2>
     <div class="options-grid">${options}</div>
+    <div class="dynamic-feedback" id="dynamicFeedback"></div>
     <button class="btn-primary" id="btnNext" disabled onclick="nextStep()">Continuar</button>
   `;
 }
@@ -576,6 +614,10 @@ function renderMulti(step) {
   if (question.includes('{objetivo}') && state.answers['objetivo']) {
     question = question.replace('{objetivo}', state.answers['objetivo'].toLowerCase());
   }
+
+  const pre = step.preHeadline
+    ? `<p class="step-microcopy" style="font-style:normal;font-weight:600;color:var(--accent)">${step.preHeadline}</p>`
+    : '';
 
   const microcopy = step.microcopy
     ? `<p class="step-microcopy">${step.microcopy}</p>`
@@ -590,39 +632,60 @@ function renderMulti(step) {
   `).join('');
 
   return `
+    ${pre}
     <h2 class="step-question">${question}</h2>
     ${microcopy}
     <div class="options-grid">${options}</div>
+    <div class="dynamic-feedback" id="dynamicFeedback"></div>
     <button class="btn-primary" id="btnNext" disabled onclick="nextStep()">Continuar</button>
   `;
 }
 
 function renderTransition() {
+  const frustracao = state.answers['frustracao'] || '';
+  const frustracaoMap = {
+    'Faço dieta mas não perco peso': 'faz dieta e não perde peso',
+    'Perco e depois recupero tudo': 'perde peso e depois recupera tudo',
+    'Sinto muita fome e desisto': 'sente muita fome e acaba desistindo',
+    'Não tenho tempo pra rotinas complicadas': 'não tem tempo pra rotinas complicadas',
+    'Não sei por onde começar': 'não sabe por onde começar',
+  };
+  const frustracaoText = frustracaoMap[frustracao] || 'não consegue emagrecer';
+
+  const metodos = state.answers['metodos'];
+  const metodosText = metodos && Array.isArray(metodos) && metodos.length > 0
+    ? metodos.filter(m => m !== 'Nunca tentei nada').slice(0, 2).join(' e ').toLowerCase()
+    : 'tudo que tentou';
+
   return `
     <div class="transition-screen">
-      <div class="icon-big">🥛</div>
-      <h2 class="headline">Você não falhou.<br>Os métodos é que falharam com você.</h2>
+      <div class="icon-big">💧</div>
+      <h2 class="headline">Agora faz sentido.</h2>
       <p class="body-text">
-        A maioria dos programas tenta forçar seu corpo a emagrecer — com restrição,
-        sofrimento e força de vontade. Mas se o metabolismo está travado, nada disso funciona.
+        Você <strong>${frustracaoText}</strong> mesmo tentando ${metodosText}.
+        Isso não é coincidência — é o padrão de um metabolismo em <strong>modo de proteção</strong>.
       </p>
       <p class="body-text" style="font-weight:600;color:var(--text)">
-        É como encher um copo virado de cabeça pra baixo.
+        É como encher um copo virado de cabeça pra baixo.<br>
+        Não importa quanta água você joga — nada fica.
       </p>
       <div class="highlight">
-        💧 É por isso que o <strong>Protocolo Desinx</strong> começa de um jeito
-        diferente. Primeiro, a gente inverte o copo. Destrava seu metabolismo. Aí sim, tudo que
-        você faz começa a funcionar.
+        💧 O <strong>Protocolo Desinx</strong> não tenta forçar seu corpo.<br>
+        Primeiro, ele <strong>inverte o copo</strong>. Destrava o metabolismo.<br>
+        Aí sim, tudo que você fizer começa a funcionar.
       </div>
-      <button class="btn-primary" onclick="nextStep()">Continuar minha análise</button>
+      <p style="font-size:13px;color:var(--text-light);text-align:center;margin:16px 0 0">
+        Mais de <strong style="color:var(--primary)">12.847 mulheres</strong> já destravaram o metabolismo com esse método.
+      </p>
+      <button class="btn-primary" onclick="nextStep()">Continuar minha análise →</button>
     </div>
   `;
 }
 
 function renderNumeric() {
   return `
-    <h2 class="step-question">Suas medidas</h2>
-    <p class="step-subtitle">Precisamos desses dados para personalizar seu protocolo.</p>
+    <h2 class="step-question">Suas medidas atuais</h2>
+    <p class="step-subtitle">Esses dados calibram a intensidade do seu protocolo.</p>
 
     <div class="input-group">
       <label>Qual é a sua altura?</label>
@@ -646,14 +709,17 @@ function renderNumeric() {
       <div class="input-error-msg" id="errPeso"></div>
     </div>
 
+    <div class="dynamic-feedback" id="imcFeedback"></div>
+
     <button class="btn-primary" id="btnNext" disabled onclick="saveNumeric()">Continuar</button>
   `;
 }
 
 function renderTarget() {
+  const current = state.answers['peso'] || 70;
   return `
-    <h2 class="step-question">Qual peso você gostaria de alcançar?</h2>
-    <p class="step-subtitle">Não se preocupe — qualquer meta é válida.</p>
+    <h2 class="step-question">Se você pudesse escolher, quanto gostaria de pesar?</h2>
+    <p class="step-subtitle">Seu peso atual: <strong>${current}kg</strong>. Coloque sua meta — qualquer uma é válida.</p>
 
     <div class="input-group">
       <div class="input-row">
@@ -674,30 +740,41 @@ function renderTarget() {
 
 function renderLead() {
   return `
-    <h2 class="step-question">Estamos quase lá!</h2>
-    <p class="step-subtitle">Coloque seu WhatsApp para receber seu Protocolo e um <strong>PDF bônus: '3 Alimentos que Travam seu Metabolismo'</strong>.</p>
+    <h2 class="step-question">Seu protocolo personalizado está pronto.</h2>
+    <p class="step-subtitle">Para qual WhatsApp enviamos seu acesso?</p>
 
     <div class="input-group">
-      <label>Como posso te chamar?</label>
-      <input type="text" class="text-field" id="inputName" placeholder="Seu primeiro nome">
+      <label>Seu primeiro nome</label>
+      <input type="text" class="text-field" id="inputName" placeholder="Como posso te chamar?">
     </div>
 
     <div class="input-group">
-      <label>Qual seu WhatsApp?</label>
+      <label>Seu WhatsApp</label>
       <div style="width: 100%;">
         <input type="tel" class="text-field" id="inputWhatsapp" style="margin-bottom:0;">
       </div>
       <div class="input-error-msg" id="errWhatsapp"></div>
-      <p class="justify-text">Usamos seu nome pra personalizar o plano e o WhatsApp pra enviar seu acesso. Sem spam.</p>
+      <p class="justify-text">Usamos pra personalizar seu plano e enviar o acesso. Sem spam, prometemos.</p>
     </div>
+
+    <p style="font-size:13px;color:var(--primary);font-weight:600;text-align:center;margin:12px 0">
+      🎁 Bônus: você também recebe o guia "3 Alimentos que Travam seu Metabolismo" (grátis).
+    </p>
 
     <label class="legal-check" style="cursor:pointer">
       <input type="checkbox" id="optinCheck" checked>
       Quero receber dicas gratuitas sobre emagrecimento
     </label>
 
+    <div class="legal-wrap" style="margin:12px 0">
+      <label class="legal-check" id="legalLabel">
+        <input type="checkbox" id="legalCheckbox" checked>
+        <span>Concordo com os <a href="https://inverta.app/termos" target="_blank" rel="noopener noreferrer">Termos de Uso</a> e <a href="https://inverta.app/privacidade" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.</span>
+      </label>
+    </div>
+
     <button class="btn-primary" id="btnNext" disabled onclick="saveLead()">
-      Ver meu plano personalizado
+      Ver meu protocolo personalizado →
     </button>
   `;
 }
@@ -710,56 +787,114 @@ function renderResult() {
   const minL = Math.max(1, Math.round(diff * 0.3));
   const maxL = Math.max(2, Math.round(diff * 0.6));
 
+  // Determine primary blockage
+  const frustracao = state.answers['frustracao'] || '';
+  const trava = state.answers['trava'] || '';
+  const sono = state.answers['sono'] || '';
+  let blockName = 'Metabolismo em Modo de Proteção';
+  let blockDesc = 'Seu corpo interpreta restrição como ameaça e freia toda queima de gordura.';
+
+  if (trava.includes('fome') || frustracao.includes('fome')) {
+    blockName = 'Desregulação de Leptina e Grelina';
+    blockDesc = 'Seus hormônios da fome estão invertidos — você sente fome mesmo quando não precisa comer.';
+  } else if (trava.includes('hormonal')) {
+    blockName = 'Bloqueio Hormonal Silencioso';
+    blockDesc = 'Cortisol e insulina estão travando seu corpo em modo de acúmulo.';
+  } else if (sono.includes('cansada') || sono.includes('pouco')) {
+    blockName = 'Cortisol Noturno Elevado';
+    blockDesc = 'Seu sono ruim dispara cortisol que trava a queima por até 14 horas.';
+  } else if (frustracao.includes('Perco e depois recupero')) {
+    blockName = 'Ciclo de Rebote Metabólico';
+    blockDesc = 'Seu corpo aprendeu a estocar gordura como defesa contra futuras restrições.';
+  }
+
+  const areas = state.answers['areas'];
+  const areasText = areas && Array.isArray(areas)
+    ? areas.join(', ').toLowerCase()
+    : 'corpo inteiro';
+
+  const metodos = state.answers['metodos'];
+  const metodosText = metodos && Array.isArray(metodos)
+    ? metodos.slice(0, 2).join(' e ').toLowerCase()
+    : '';
+
   return `
     <div class="result-wrap">
       <div class="result-header">
-        <h2 class="headline">${name}, seu Protocolo está pronto! 🎉</h2>
-        <p class="sub">Baseado nas suas respostas, criamos um plano de 3 fases para
-          destravar seu metabolismo e alcançar ${target}kg.</p>
+        <h2 class="headline">${name}, encontramos seu bloqueio principal.</h2>
+        <div class="diagnosis-card">
+          <div class="diagnosis-label">DIAGNÓSTICO</div>
+          <div class="diagnosis-name">🔬 ${blockName}</div>
+          <div class="diagnosis-desc">${blockDesc}</div>
+          ${metodosText ? `<div class="diagnosis-explain">Isso explica por que ${metodosText} não funcionou pra você.</div>` : ''}
+        </div>
       </div>
 
+      <p class="sub" style="text-align:center;margin:20px 0;color:var(--text-light)">
+        Criamos um protocolo de 3 fases para corrigir esse bloqueio e te levar a <strong style="color:var(--primary)">${target}kg</strong>.
+      </p>
+
       <div class="benefits-grid">
-        <div class="benefit-card"><div class="b-icon">💧</div><div class="b-title">Inversão Metabólica</div><div class="b-desc">Elimina o que trava nas 2 primeiras semanas</div></div>
-        <div class="benefit-card"><div class="b-icon">⚡</div><div class="b-title">Energia Real</div><div class="b-desc">Sem fadiga de dieta. Dá energia, não tira.</div></div>
-        <div class="benefit-card"><div class="b-icon">🔥</div><div class="b-title">Queima Automática</div><div class="b-desc">Semana 3+, metabolismo trabalha por você</div></div>
-        <div class="benefit-card"><div class="b-icon">🪞</div><div class="b-title">Resultado Visível</div><div class="b-desc">Menos inchaço. No espelho e na roupa.</div></div>
+        <div class="benefit-card"><div class="b-icon">💧</div><div class="b-title">Fase 1 — Inversão</div><div class="b-desc">Destrava o metabolismo nos primeiros 7-14 dias</div></div>
+        <div class="benefit-card"><div class="b-icon">⚡</div><div class="b-title">Fase 2 — Ativação</div><div class="b-desc">Reseta hormônios da fome e do sono</div></div>
+        <div class="benefit-card"><div class="b-icon">🔥</div><div class="b-title">Fase 3 — Queima</div><div class="b-desc">Metabolismo trabalha por você 24/7</div></div>
+        <div class="benefit-card"><div class="b-icon">🪞</div><div class="b-title">Resultado</div><div class="b-desc">Menos ${areasText}. No espelho e na roupa.</div></div>
       </div>
 
       <div class="plan-preview">
-        <h3>📋 Sua Semana 1</h3>
+        <h3>📋 Sua Semana 1 — Foco: ${areasText}</h3>
         <div class="plan-day"><span class="day-num">1</span>Protocolo de Hidratação Estratégica</div>
         <div class="plan-day"><span class="day-num">2</span>Reset Alimentar (cardápio de eliminação)</div>
         <div class="plan-day"><span class="day-num">3</span>Micro-treino de 12 min — Ativação Leve</div>
         <div class="plan-day"><span class="day-num">4</span>Protocolo de Desinchaço</div>
         <div class="plan-day"><span class="day-num">5</span>Cardápio Rotativo + Ajuste de Sono</div>
-        <div class="plan-day"><span class="day-num">6</span>Micro-treino de 15 minutos</div>
-        <div class="plan-day"><span class="day-num">7</span>Descanso Ativo + Avaliação</div>
+        <div class="plan-day"><span class="day-num">6</span>Micro-treino de 15 min — Foco ${areas && areas[0] ? areas[0] : 'Corpo'}</div>
+        <div class="plan-day"><span class="day-num">7</span>Avaliação + Ajuste do Protocolo</div>
       </div>
 
       <div class="estimate-box">
         <div class="big">-${minL} a ${maxL} kg</div>
-        <div class="small">Estimativa para as primeiras 4 semanas</div>
+        <div class="small">Estimativa para as primeiras 4 semanas com o Protocolo</div>
       </div>
 
-      <button class="btn-primary btn-result" onclick="nextStep()">Quero começar meu Protocolo</button>
+      ${renderReviewCards(2)}
+
+      <button class="btn-primary btn-result" onclick="nextStep()">Desbloquear meu Protocolo Personalizado →</button>
     </div>
   `;
 }
 
 function renderPricing() {
+  const name = state.userData.name || 'Você';
+  const frustracao = state.answers['frustracao'] || '';
+  const metodos = state.answers['metodos'];
+  const metodosText = metodos && Array.isArray(metodos) && metodos.length > 0
+    ? metodos.filter(m => m !== 'Nunca tentei nada').join(', ').toLowerCase()
+    : '';
+
   return `
     <div class="pricing-header">
-      <h2 class="headline">Escolha seu plano e comece hoje</h2>
+      <h2 class="headline">${name}, seu Protocolo está pronto.<br>Escolha como começar.</h2>
       <div class="timer-bar">
-        <span>🔥</span> Oferta expira em <strong id="timerDisplay">15:00</strong>
+        <span>🔥</span> Preço promocional expira em <strong id="timerDisplay">15:00</strong>
+        <span style="font-size:11px;display:block;margin-top:2px">Após esse tempo, o valor volta para R$ 39,90/mês</span>
       </div>
     </div>
 
+    ${metodosText ? `
+    <div class="cost-inaction" style="background:linear-gradient(135deg,#fef2f2,#fff1f2);border:1px solid #fca5a5;border-radius:12px;padding:16px 20px;margin-bottom:20px;text-align:center">
+      <p style="font-size:13px;color:#991b1b;margin:0;line-height:1.5">
+        ⚠️ Você já investiu em <strong>${metodosText}</strong> sem resultado duradouro.
+        Sem corrigir o bloqueio metabólico, a tendência é ganhar mais <strong>2-4kg nos próximos 6 meses</strong> — o padrão se repete.
+      </p>
+    </div>` : ''}
+
     <div class="price-anchoring">
-      <div class="anchor-item"><span>Consulta Nutricional:</span> <span><strike>R$ 350,00</strike></span></div>
-      <div class="anchor-item"><span>Plano de Treino:</span> <span><strike>R$ 150,00</strike></span></div>
-      <div class="anchor-item total"><span>Valor Total:</span> <span><strike>R$ 500,00</strike></span></div>
-      <div class="anchor-highlight">Seu Protocolo Hoje: a partir de R$ 16,00/mês</div>
+      <div class="anchor-item"><span>Consulta Nutricional mensal:</span> <span><strike>R$ 350,00</strike></span></div>
+      <div class="anchor-item"><span>Personal Trainer mensal:</span> <span><strike>R$ 250,00</strike></span></div>
+      <div class="anchor-item"><span>Suplementos e shakes:</span> <span><strike>R$ 200,00</strike></span></div>
+      <div class="anchor-item total"><span>Custo mensal típico:</span> <span><strike>R$ 800,00</strike></span></div>
+      <div class="anchor-highlight">Seu Protocolo Personalizado: a partir de R$ 12,90/mês</div>
     </div>
 
     <div class="pricing-cards">
@@ -768,30 +903,34 @@ function renderPricing() {
         <div class="price-right"><div class="price-value">R$ 29,90</div><div class="price-per">/mês</div></div>
       </div>
       <div class="price-card featured selected" data-plan="quarter" onclick="selectPlan(this)">
-        <span class="badge">⭐ 93% ESCOLHEM ESTE</span>
-        <div class="price-left"><span class="price-radio"></span><div><div class="price-name">Trimestral</div><div class="price-detail">Melhor custo-benefício</div></div></div>
-        <div class="price-right"><div class="price-value">R$ 21,30</div><div class="price-per">/mês (R$ 59,70)</div></div>
+        <span class="badge">⭐ 93% escolhem este</span>
+        <div class="price-left"><span class="price-radio"></span><div><div class="price-name">Trimestral</div><div class="price-detail">Resultado completo — melhor custo-benefício</div></div></div>
+        <div class="price-right"><div class="price-value">R$ 19,90</div><div class="price-per">/mês (R$ 59,70)</div></div>
       </div>
       <div class="price-card" data-plan="annual" onclick="selectPlan(this)">
-        <span class="badge badge-economy">ECONOMIZE 57%</span>
-        <div class="price-left"><span class="price-radio"></span><div><div class="price-name">Anual</div><div class="price-detail">Maior economia — compromisso total</div></div></div>
-        <div class="price-right"><div class="price-value">R$ 16,00</div><div class="price-per">/mês (R$ 154,80)</div></div>
+        <span class="badge badge-save">Economize 57%</span>
+        <div class="price-left"><span class="price-radio"></span><div><div class="price-name">Anual</div><div class="price-detail">Transformação total — maior economia</div></div></div>
+        <div class="price-right"><div class="price-value">R$ 12,90</div><div class="price-per">/mês (R$ 154,80)</div></div>
       </div>
     </div>
 
-    <p class="pricing-social-proof">
-      93% das assinantes escolhem o trimestral — quem segue por 3 meses tem <strong>2x mais chance</strong> de manter o peso.
+    <p style="font-size:13px;color:var(--text-light);text-align:center;margin-bottom:20px">
+      93% das assinantes escolhem o trimestral — quem segue por 3 meses tem <strong style="color:var(--primary)">2x mais chance</strong> de manter o peso.
     </p>
 
-    <div class="guarantee-box-full">
-      <div class="guarantee-box-icon">🔒</div>
-      <div class="guarantee-box-body">
-        <div class="guarantee-box-title">Garantia Incondicional de 7 Dias</div>
-        <div class="guarantee-box-text">Teste o Protocolo por 7 dias. Se não sentir diferença no corpo, devolvemos 100% do valor — sem perguntas, sem burocracia.</div>
+    <div class="guarantee-block">
+      <div class="guarantee-icon">🔒</div>
+      <div class="guarantee-text">
+        <strong>Garantia Incondicional de 7 Dias — Risco Zero</strong>
+        <p>Teste o Protocolo por 7 dias. Se não sentir diferença no corpo, no inchaço ou na energia, devolvemos 100% do valor — sem perguntas, sem burocracia. Um simples e-mail resolve.</p>
       </div>
     </div>
 
-    <button class="btn-primary" id="btnCheckout" onclick="goCheckout()">Começar agora — R$ 21,30/mês</button>
+    <button class="btn-primary" id="btnCheckout" onclick="goCheckout()">Começar agora — R$ 19,90/mês</button>
+
+    <p style="font-size:12px;color:var(--text-light);text-align:center;margin-top:8px">
+      Você está a 1 clique de receber seu protocolo no WhatsApp que cadastrou.
+    </p>
 
     <div class="payment-methods">
       <span style="display:flex;align-items:center;gap:4px">💳 Cartão</span>
@@ -806,23 +945,26 @@ function renderPricing() {
 }
 
 function renderThankYou() {
-  // Redirect to standalone thank you page
+  const areas = state.answers['areas'];
+  const areasText = areas && Array.isArray(areas) ? areas.join(', ') : '';
   const params = new URLSearchParams({
     nome: state.userData.name || '',
     wpp: state.userData.whatsapp || '',
+    areas: areasText,
   });
-  window.location.href = 'obrigado.html?' + params.toString();
+  window.location.href = 'thank-you.html?' + params.toString();
   return '<div style="text-align:center;padding:40px 0"><p>Redirecionando...</p></div>';
 }
 
 
 /* =============================================
-   9. EVENT BINDINGS
+   10. EVENT BINDINGS — WITH DYNAMIC FEEDBACK
    ============================================= */
 
 function bindSingle(step) {
   const cards = document.querySelectorAll('.option-card');
   const btn = document.getElementById('btnNext');
+  const feedbackEl = document.getElementById('dynamicFeedback');
 
   cards.forEach(card => {
     card.addEventListener('click', () => {
@@ -830,8 +972,19 @@ function bindSingle(step) {
       card.classList.add('selected');
       state.answers[step.id] = card.dataset.value;
       btn.disabled = false;
+
+      // Dynamic feedback
+      const feedback = getDynamicFeedback(step.id, card.dataset.value);
+      if (feedback && feedbackEl) {
+        feedbackEl.innerHTML = feedback;
+        feedbackEl.classList.add('visible');
+      } else if (feedbackEl) {
+        feedbackEl.classList.remove('visible');
+      }
+
+      // Also show postSelect toast if defined
       if (step.postSelect) {
-        setTimeout(() => showToast(step.postSelect), 300);
+        setTimeout(() => showToast(step.postSelect), 400);
       }
     });
   });
@@ -841,6 +994,7 @@ function bindMulti(step) {
   const cards = document.querySelectorAll('.option-card');
   const btn = document.getElementById('btnNext');
   const selected = new Set();
+  const feedbackEl = document.getElementById('dynamicFeedback');
 
   cards.forEach(card => {
     card.addEventListener('click', () => {
@@ -854,6 +1008,20 @@ function bindMulti(step) {
       }
       state.answers[step.id] = Array.from(selected);
       btn.disabled = selected.size === 0;
+
+      // Show feedback on first selection
+      if (selected.size === 1) {
+        const feedback = getDynamicFeedback(step.id, val);
+        if (feedback && feedbackEl) {
+          feedbackEl.innerHTML = feedback;
+          feedbackEl.classList.add('visible');
+        }
+      }
+
+      // Show postSelect toast
+      if (step.postSelect && selected.size > 0) {
+        setTimeout(() => showToast(step.postSelect), 400);
+      }
     });
   });
 }
@@ -864,6 +1032,7 @@ function bindNumeric() {
   const btn = document.getElementById('btnNext');
   const errAltura = document.getElementById('errAltura');
   const errPeso = document.getElementById('errPeso');
+  const imcEl = document.getElementById('imcFeedback');
 
   function validate() {
     const altura = +inputAltura.value;
@@ -871,7 +1040,6 @@ function bindNumeric() {
     let alturaOk = true;
     let pesoOk = true;
 
-    // Reset states
     inputAltura.classList.remove('input-error');
     inputPeso.classList.remove('input-error');
     errAltura.classList.remove('visible');
@@ -879,38 +1047,28 @@ function bindNumeric() {
     errAltura.textContent = '';
     errPeso.textContent = '';
 
-    // Validate altura
     if (inputAltura.value) {
-      if (altura < 120) {
-        alturaOk = false;
-        errAltura.textContent = '⚠️ Altura mínima: 120 cm';
-        errAltura.classList.add('visible');
-        inputAltura.classList.add('input-error');
-      } else if (altura > 206) {
-        alturaOk = false;
-        errAltura.textContent = '⚠️ Altura máxima: 206 cm';
-        errAltura.classList.add('visible');
-        inputAltura.classList.add('input-error');
-      }
-    } else {
-      alturaOk = false;
-    }
+      if (altura < 120) { alturaOk = false; errAltura.textContent = '⚠️ Altura mínima: 120 cm'; errAltura.classList.add('visible'); inputAltura.classList.add('input-error'); }
+      else if (altura > 206) { alturaOk = false; errAltura.textContent = '⚠️ Altura máxima: 206 cm'; errAltura.classList.add('visible'); inputAltura.classList.add('input-error'); }
+    } else { alturaOk = false; }
 
-    // Validate peso
     if (inputPeso.value) {
-      if (peso < 30) {
-        pesoOk = false;
-        errPeso.textContent = '⚠️ Peso mínimo: 30 kg';
-        errPeso.classList.add('visible');
-        inputPeso.classList.add('input-error');
-      } else if (peso > 250) {
-        pesoOk = false;
-        errPeso.textContent = '⚠️ Peso máximo: 250 kg';
-        errPeso.classList.add('visible');
-        inputPeso.classList.add('input-error');
-      }
-    } else {
-      pesoOk = false;
+      if (peso < 30) { pesoOk = false; errPeso.textContent = '⚠️ Peso mínimo: 30 kg'; errPeso.classList.add('visible'); inputPeso.classList.add('input-error'); }
+      else if (peso > 250) { pesoOk = false; errPeso.textContent = '⚠️ Peso máximo: 250 kg'; errPeso.classList.add('visible'); inputPeso.classList.add('input-error'); }
+    } else { pesoOk = false; }
+
+    // Show IMC when both are valid
+    if (alturaOk && pesoOk && imcEl) {
+      const imc = (peso / ((altura / 100) ** 2)).toFixed(1);
+      let imcMsg = '';
+      if (imc < 18.5) imcMsg = `Seu IMC atual: <strong>${imc}</strong> (abaixo do peso). O protocolo será ajustado para definição saudável.`;
+      else if (imc < 25) imcMsg = `Seu IMC atual: <strong>${imc}</strong> (faixa normal). Mulheres nessa faixa respondem rápido ao Pilar 1.`;
+      else if (imc < 30) imcMsg = `Seu IMC atual: <strong>${imc}</strong> (acima do ideal). Mulheres nessa faixa perdem em média 4-7kg nas primeiras 4 semanas.`;
+      else imcMsg = `Seu IMC atual: <strong>${imc}</strong>. Mulheres nessa faixa têm os resultados mais expressivos — a inversão metabólica faz diferença radical.`;
+      imcEl.innerHTML = imcMsg;
+      imcEl.classList.add('visible');
+    } else if (imcEl) {
+      imcEl.classList.remove('visible');
     }
 
     btn.disabled = !(alturaOk && pesoOk);
@@ -941,33 +1099,24 @@ function bindTarget() {
     const diff = current - value;
     let ok = true;
 
-    // Reset
     input.classList.remove('input-error');
     errTarget.classList.remove('visible');
     errTarget.textContent = '';
     feedback.classList.remove('visible', 'error');
 
-    if (!input.value) {
-      ok = false;
-    } else if (value < 30) {
-      ok = false;
-      errTarget.textContent = '⚠️ Peso mínimo: 30 kg';
-      errTarget.classList.add('visible');
-      input.classList.add('input-error');
-    } else if (value > 200) {
-      ok = false;
-      errTarget.textContent = '⚠️ Peso máximo: 200 kg';
-      errTarget.classList.add('visible');
-      input.classList.add('input-error');
-    } else if (value >= current) {
+    if (!input.value) { ok = false; }
+    else if (value < 30) { ok = false; errTarget.textContent = '⚠️ Peso mínimo: 30 kg'; errTarget.classList.add('visible'); input.classList.add('input-error'); }
+    else if (value > 200) { ok = false; errTarget.textContent = '⚠️ Peso máximo: 200 kg'; errTarget.classList.add('visible'); input.classList.add('input-error'); }
+    else if (value >= current) {
       feedback.classList.add('visible');
-      feedback.textContent = 'ℹ️ Seu peso-alvo é igual ou acima do atual — ajustaremos o protocolo para definição e saúde';
+      feedback.textContent = 'ℹ️ Peso-alvo igual ou acima do atual — o protocolo será ajustado pra definição e saúde.';
     } else {
       feedback.classList.add('visible');
-      if (diff <= 5)       feedback.textContent = '🎯 Meta leve — você pode chegar lá em 4 semanas';
-      else if (diff <= 15) feedback.textContent = '💪 Meta realista — o Protocolo foi feito pra isso';
-      else if (diff <= 30) feedback.textContent = '🔥 Meta desafiadora — vamos juntas, passo a passo';
-      else                 feedback.textContent = '✨ Transformação profunda — o Pilar 1 vai ser seu melhor amigo';
+      const weeks = Math.max(2, Math.round(diff / 1.2));
+      if (diff <= 5) feedback.textContent = `🎯 Meta leve — estimativa: ${weeks} semanas com o Protocolo.`;
+      else if (diff <= 15) feedback.textContent = `💪 Meta realista — estimativa: ${weeks} semanas. O Protocolo foi feito pra isso.`;
+      else if (diff <= 30) feedback.textContent = `🔥 Meta desafiadora — estimativa: ${weeks} semanas. Vamos juntas, fase a fase.`;
+      else feedback.textContent = `✨ Transformação profunda — estimativa: ${weeks} semanas. O Pilar 1 vai ser seu melhor amigo.`;
     }
 
     btn.disabled = !ok;
@@ -989,13 +1138,11 @@ function bindLead() {
   const btn = document.getElementById('btnNext');
   const errWpp = document.getElementById('errWhatsapp');
 
-  // Name validation: only letters and spaces
   inputName.addEventListener('input', () => {
     inputName.value = inputName.value.replace(/[^a-zA-ZÀ-ÿ\s]/g, '');
     validateLead();
   });
 
-  // Initialize intl-tel-input
   if (window.intlTelInput) {
     itiInstance = window.intlTelInput(inputWpp, {
       initialCountry: "br",
@@ -1006,7 +1153,6 @@ function bindLead() {
   }
 
   inputWpp.addEventListener('input', () => {
-    // Remove all non-numeric characters
     inputWpp.value = inputWpp.value.replace(/\D/g, '');
     validateLead();
   });
@@ -1022,28 +1168,20 @@ function bindLead() {
       const digits = inputWpp.value;
 
       if (countryData.iso2 === 'br') {
-        // Brazil: exactly 11 digits and must have '9' after the 2-digit DDD
-        if (digits.length === 11 && digits[2] === '9') {
-          wppOk = true;
-        } else {
+        if (digits.length === 11 && digits[2] === '9') { wppOk = true; }
+        else {
           wppOk = false;
-          if (digits.length > 0 && digits.length < 11) {
-            errorMsg = '⚠️ O número deve ter 11 dígitos (DDD + 9 + número).';
-          } else if (digits.length === 11 && digits[2] !== '9') {
-            errorMsg = '⚠️ O número deve conter o dígito 9 após o DDD.';
-          } else if (digits.length > 11) {
-            errorMsg = '⚠️ O número não pode ter mais de 11 dígitos.';
-          }
+          if (digits.length > 0 && digits.length < 11) errorMsg = '⚠️ O número deve ter 11 dígitos (DDD + 9 + número).';
+          else if (digits.length === 11 && digits[2] !== '9') errorMsg = '⚠️ O número deve conter o dígito 9 após o DDD.';
+          else if (digits.length > 11) errorMsg = '⚠️ O número não pode ter mais de 11 dígitos.';
         }
       } else {
-        // Other countries: rely on intl-tel-input validation
         wppOk = itiInstance.isValidNumber();
       }
     } else {
       wppOk = inputWpp.value.trim().length >= 8;
     }
 
-    // Reset error
     inputWpp.classList.remove('input-error');
     errWpp.classList.remove('visible');
     errWpp.textContent = '';
@@ -1061,31 +1199,38 @@ function bindLead() {
 function saveLead() {
   const name = document.getElementById('inputName').value.trim();
   const btn = document.getElementById('btnNext');
-  
   if (btn.disabled) return;
 
   state.userData.name = name;
   state.userData.whatsapp = itiInstance ? itiInstance.getNumber() : document.getElementById('inputWhatsapp').value;
-  // In production: POST to API here
   console.log('[Lead Captured]', state.userData, state.answers);
   nextStep();
 }
 
 
 /* =============================================
-   10. LOADING SCREEN
+   11. LOADING SCREEN — PERSONALIZED & LONGER
    ============================================= */
 
 function startLoading(container) {
   updateProgress(0);
 
+  const objetivo = state.answers['objetivo'] || 'perder peso';
+  const sono = state.answers['sono'] || '';
+  const restricoes = state.answers['restricoes'];
+  const areas = state.answers['areas'];
+
   const messages = [
-    'Analisando seu perfil metabólico...',
-    'Calculando sua janela de ativação...',
-    'Identificando seus bloqueios...',
-    'Montando seu cardápio inteligente...',
-    'Personalizando seus treinos...',
-    'Finalizando seu plano de inversão...',
+    `Analisando seu perfil para ${objetivo.toLowerCase()}...`,
+    'Identificando bloqueios metabólicos...',
+    sono ? `Avaliando impacto do sono: "${sono.toLowerCase()}"...` : 'Calculando sua janela de ativação...',
+    restricoes && Array.isArray(restricoes) && !restricoes.includes('Nenhuma restrição')
+      ? `Adaptando cardápio para suas restrições...`
+      : 'Montando seu cardápio inteligente...',
+    areas && Array.isArray(areas) ? `Personalizando treinos para: ${areas.slice(0, 2).join(', ')}...` : 'Calibrando micro-treinos...',
+    '⚠️ Identificamos 3 bloqueios no seu perfil...',
+    'Montando solução personalizada...',
+    'Finalizando seu Protocolo de Inversão...',
   ];
 
   container.innerHTML = `
@@ -1107,16 +1252,16 @@ function startLoading(container) {
   let msgIdx = 0;
 
   const interval = setInterval(() => {
-    progress += 2;
+    progress += 1; // slower — takes ~10s
     bar.style.width = progress + '%';
 
-    if (progress % 18 === 0 && msgIdx < messages.length - 1) {
+    if (progress % 13 === 0 && msgIdx < messages.length - 1) {
       msgIdx++;
       text.style.opacity = '0';
       setTimeout(() => {
         text.textContent = messages[msgIdx];
         text.style.opacity = '1';
-      }, 200);
+      }, 250);
     }
 
     if (progress >= 100) {
@@ -1124,14 +1269,14 @@ function startLoading(container) {
       setTimeout(() => {
         state.currentStep++;
         renderStep(state.currentStep);
-      }, 600);
+      }, 800);
     }
-  }, 80);
+  }, 100);
 }
 
 
 /* =============================================
-   11. PRICING ACTIONS
+   12. PRICING ACTIONS
    ============================================= */
 
 function bindPricing() {
@@ -1144,7 +1289,7 @@ function selectPlan(el) {
 
   const btn = document.getElementById('btnCheckout');
   const plan = el.dataset.plan;
-  const prices = { month: 'R$ 29,90/mês', quarter: 'R$ 21,30/mês', annual: 'R$ 16,00/mês' };
+  const prices = { month: 'R$ 29,90/mês', quarter: 'R$ 19,90/mês', annual: 'R$ 12,90/mês' };
   btn.textContent = `Começar agora — ${prices[plan]}`;
 }
 
@@ -1152,22 +1297,20 @@ function goCheckout() {
   const selected = document.querySelector('.price-card.selected');
   const plan = selected ? selected.dataset.plan : 'quarter';
 
-  const checkoutUrls = {
+  const checkoutLinks = {
     month:   'https://checkout.ticto.app/O7406796A',
     quarter: 'https://checkout.ticto.app/O131B466E',
-    annual:  'https://checkout.ticto.app/O167DA548'
+    annual:  'https://checkout.ticto.app/O167DA548',
   };
 
-  const checkoutUrl = checkoutUrls[plan];
-  if (!checkoutUrl) return;
+  let url = checkoutLinks[plan] || checkoutLinks.quarter;
 
-  // Pré-preenche checkout com dados do quiz
+  // Pre-fill name from quiz data
   const name = state.userData.name || '';
   const rawPhone = state.userData.whatsapp || '';
   // Remove tudo que não é dígito e tira o 55 do início (código do Brasil)
   const phone = rawPhone.replace(/\D/g, '').replace(/^55/, '');
 
-  let url = checkoutUrl;
   const params = [];
   if (name)  params.push('name=' + encodeURIComponent(name));
   if (phone) params.push('phone=' + phone);
@@ -1193,69 +1336,74 @@ function startTimer() {
 
 
 /* =============================================
-   12. INIT & SOCIAL PROOF & EXIT INTENT
+   13. SOCIAL PROOF & EXIT INTENT
    ============================================= */
 
-const FAKE_NAMES = ['Ana', 'Maria', 'Juliana', 'Camila', 'Fernanda', 'Patrícia', 'Aline', 'Bruna'];
-const FAKE_CITIES = ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Curitiba', 'Porto Alegre', 'Brasília', 'Salvador'];
+const FAKE_NAMES = ['Ana', 'Maria', 'Juliana', 'Camila', 'Fernanda', 'Patrícia', 'Aline', 'Bruna', 'Larissa', 'Carla'];
+const FAKE_CITIES = ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Curitiba', 'Porto Alegre', 'Brasília', 'Salvador', 'Fortaleza', 'Recife'];
+const FAKE_ACTIONS = [
+  'acabou de adquirir o Protocolo!',
+  'começou o Pilar 1 agora!',
+  'garantiu o plano trimestral!',
+  'acabou de desbloquear o Protocolo!',
+];
 
 function initSocialProof() {
   setInterval(() => {
-    // Only show on result or pricing screens
     const currentStep = steps[state.currentStep];
     if (!currentStep || (currentStep.id !== 'resultado' && currentStep.id !== 'pricing')) return;
-    
-    // 70% chance to show every 12 seconds to make it more visible for testing
+
     if (Math.random() > 0.3) {
       const name = FAKE_NAMES[Math.floor(Math.random() * FAKE_NAMES.length)];
       const city = FAKE_CITIES[Math.floor(Math.random() * FAKE_CITIES.length)];
-      showToast(`🛒 ${name} de ${city} acabou de adquirir o Protocolo!`);
+      const action = FAKE_ACTIONS[Math.floor(Math.random() * FAKE_ACTIONS.length)];
+      showToast(`🛒 ${name} de ${city} ${action}`);
     }
-  }, 12000);
+  }, 10000);
 }
 
 let exitIntentShown = false;
 
+function shouldShowExitIntent() {
+  const currentStep = steps[state.currentStep];
+  if (!currentStep) return false;
+  // Only trigger from phase 3 (Calibração) onwards, excluding post-quiz screens
+  return currentStep.phase >= 3 || currentStep.id === 'resultado' || currentStep.id === 'pricing';
+}
+
 function triggerExitIntent() {
   if (exitIntentShown) return;
+  if (!shouldShowExitIntent()) return;
   exitIntentShown = true;
+
+  // Dynamic copy based on where they are in the funnel
   const modal = document.getElementById('exitModal');
-  if (modal) modal.classList.add('visible');
+  const currentStep = steps[state.currentStep];
+  const titleEl = modal.querySelector('.exit-title');
+  const descEl = modal.querySelector('.exit-desc');
+
+  if (currentStep && (currentStep.id === 'resultado' || currentStep.id === 'pricing')) {
+    titleEl.textContent = 'Seu Protocolo já está pronto.';
+    descEl.innerHTML = 'Você completou toda a análise. Seu plano personalizado está esperando — é só desbloquear. Sair agora significa <strong>perder o protocolo montado pra você</strong>.';
+  } else {
+    titleEl.textContent = 'Você já está na metade da análise.';
+    descEl.innerHTML = 'Faltam poucas perguntas pra montar seu protocolo personalizado. Se sair agora, vai precisar <strong>recomeçar do zero</strong>.';
+  }
+
+  modal.classList.add('visible');
 }
 
 function initExitIntent() {
-  // Desktop: Mouse Leave
-  document.addEventListener('mouseleave', (e) => {
-    if (e.clientY < 0 && state.currentStep > 2 && state.currentStep < steps.length) {
-      triggerExitIntent();
-    }
-  });
-
-  // Mobile: Back Button Interception
-  // We push a dummy state. When user clicks back, popstate fires.
+  // Only trigger on browser back button
   if (window.history && window.history.pushState) {
     window.history.pushState({ noExit: true }, '');
     window.addEventListener('popstate', (event) => {
-      if (!exitIntentShown && state.currentStep > 2 && state.currentStep < steps.length) {
+      if (!exitIntentShown && shouldShowExitIntent()) {
         triggerExitIntent();
-        // Push again so the next back click actually works or triggers again
         window.history.pushState({ noExit: true }, '');
       }
     });
   }
-
-  // Mobile: Fast Scroll Up (often indicates intent to reach address bar)
-  let lastScrollTop = 0;
-  window.addEventListener('scroll', () => {
-    const st = window.pageYOffset || document.documentElement.scrollTop;
-    // If scrolling up fast near the top
-    if (st < lastScrollTop && st < 100 && (lastScrollTop - st) > 30) {
-      if (state.currentStep > 2 && state.currentStep < steps.length) {
-        triggerExitIntent();
-      }
-    }
-    lastScrollTop = st <= 0 ? 0 : st;
-  }, { passive: true });
 }
 
 function closeExitModal() {
@@ -1264,8 +1412,6 @@ function closeExitModal() {
 }
 
 function acceptExitOffer() {
-  // O usuário quer voltar para o quiz de onde parou, então apenas fechamos o modal.
-  // Isso mantém o estado atual do quiz intacto.
   closeExitModal();
 }
 

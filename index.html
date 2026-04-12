@@ -1882,6 +1882,11 @@ function renderStep(idx) {
   if (step.type === 'target')  bindTarget();
   if (step.type === 'lead')    bindLead();
   if (step.type === 'pricing') bindPricing();
+
+  // Auto-scroll to CTA on result page (mobile only)
+  if (step.type === 'result' && window.innerWidth < 768) {
+    autoScrollToCTA();
+  }
 }
 
 function nextStep() {
@@ -1889,6 +1894,37 @@ function nextStep() {
   state.currentStep++;
   renderStep(state.currentStep);
   window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function autoScrollToCTA() {
+  let userScrolled = false;
+
+  // Detect if user scrolls manually — if so, cancel auto-scroll
+  const onUserScroll = () => { userScrolled = true; };
+  window.addEventListener('scroll', onUserScroll, { passive: true });
+  window.addEventListener('touchmove', onUserScroll, { passive: true });
+
+  // Wait for user to read the diagnosis, then gently guide to CTA
+  setTimeout(() => {
+    // Clean up listeners
+    window.removeEventListener('scroll', onUserScroll);
+    window.removeEventListener('touchmove', onUserScroll);
+
+    // Only scroll if user hasn't interacted
+    if (userScrolled) return;
+
+    const btn = document.querySelector('.btn-result');
+    if (!btn) return;
+
+    // Scroll so the CTA is visible at bottom of screen with some context above
+    const btnRect = btn.getBoundingClientRect();
+    const targetScroll = window.pageYOffset + btnRect.top - window.innerHeight + btnRect.height + 40;
+
+    // Only scroll down, never up
+    if (targetScroll > window.pageYOffset) {
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    }
+  }, 2200);
 }
 
 function trackStep(step) {
@@ -2741,10 +2777,11 @@ function startTimer() {
 const FAKE_NAMES = ['Ana', 'Maria', 'Juliana', 'Camila', 'Fernanda', 'Patrícia', 'Aline', 'Bruna', 'Larissa', 'Carla'];
 const FAKE_CITIES = ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Curitiba', 'Porto Alegre', 'Brasília', 'Salvador', 'Fortaleza', 'Recife'];
 const FAKE_ACTIONS = [
-  'acabou de adquirir o Protocolo!',
-  'começou o Pilar 1 agora!',
-  'garantiu o plano trimestral!',
-  'acabou de desbloquear o Protocolo!',
+  'acabou de garantir o Protocolo!',
+  'desbloqueou o Protocolo agora!',
+  'garantiu o Protocolo Completo!',
+  'começou a Fase 1 agora!',
+  'acabou de garantir o pacote completo!',
 ];
 
 function initSocialProof() {

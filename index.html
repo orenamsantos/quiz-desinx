@@ -2736,18 +2736,28 @@ function goCheckout() {
   const selected = document.querySelector('.price-card.selected');
   const plan = selected ? selected.dataset.plan : 'premium';
 
-  // TODO: Criar as 2 ofertas na Ticto como pagamento único e colar os links aqui
   const checkoutLinks = {
-    essential: 'https://checkout.ticto.app/SEU_LINK_ESSENTIAL',
-    premium:   'https://checkout.ticto.app/SEU_LINK_PREMIUM',
+    essential: 'https://checkout.ticto.app/OF0C63DF7',
+    premium:   'https://checkout.ticto.app/OBC594508',
   };
 
   let url = checkoutLinks[plan] || checkoutLinks.premium;
 
-  // Pre-fill name and phone from quiz data
+  // Preenchimento automático dos dados do cliente na Ticto
   const params = new URLSearchParams();
-  if (state.userData.name) params.set('name', state.userData.name);
-  if (state.userData.whatsapp) params.set('phone', state.userData.whatsapp);
+  if (state.userData.name) {
+    params.set('name', state.userData.name);
+    params.set('customer_name', state.userData.name);
+  }
+  if (state.userData.whatsapp) {
+    params.set('phone', state.userData.whatsapp);
+    params.set('customer_phone', state.userData.whatsapp);
+    params.set('celular', state.userData.whatsapp);
+  }
+  if (state.userData.email) {
+    params.set('email', state.userData.email);
+    params.set('customer_email', state.userData.email);
+  }
   if (params.toString()) url += '?' + params.toString();
 
   console.log('[Checkout]', { plan, url, user: state.userData });

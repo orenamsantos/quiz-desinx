@@ -104,6 +104,21 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .cta-btn{padding:16px 20px;font-size:16px}
 }
 </style>
+<!-- TikTok Pixel -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+  ttq.load('D58V12JC77UD75S4LAF0');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel End -->
+
+<!-- Ticto One Click Buy -->
+<script src="https://midas.ticto.app/oneclickbuy.js" async></script>
+<!-- Ticto One Click Buy -->
 </head>
 <body>
 
@@ -174,8 +189,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
         <span class="old">R$ 47,00</span>
         <span class="new">R$ 27,00</span>
       </div>
-      <a href="#" class="upsell-btn" id="upsellBtn">Garantir meu Guia Anti-Rebote — R$ 27,00</a>
-      <button class="upsell-skip" onclick="skipUpsell()">Não, obrigada — vou só com o Protocolo</button>
+      <button type="button" class="ticto-upsell-button upsell-btn" data-offer-code="0772BBDD6">Garantir meu Guia Anti-Rebote — R$ 27,00</button>
+      <button type="button" class="ticto-refuse-button upsell-skip" onclick="skipUpsell()">Não, obrigada — vou só com o Protocolo</button>
     </div>
   </div>
 
@@ -194,6 +209,31 @@ const email = params.get('email') || '';
 const phone = params.get('phone') || '';
 const plan = params.get('plan') || params.get('offer') || '';
 
+// TikTok Pixel: identificar usuário e disparar Purchase
+if (typeof ttq !== 'undefined') {
+  // Identify com os dados que a Ticto passa na URL
+  if (email || phone) {
+    ttq.identify({
+      email: email ? decodeURIComponent(email) : '',
+      phone_number: phone ? decodeURIComponent(phone) : '',
+    });
+  }
+
+  // Purchase — detecta o plano e o valor correto
+  const planValues = { essential: 39.90, premium: 67.00 };
+  const purchaseValue = planValues[plan] || 67.00;
+
+  ttq.track('PlaceAnOrder', {
+    content_name: 'compra_desinx_' + (plan || 'premium'),
+    content_type: 'product',
+    content_id: 'desinx_' + (plan || 'premium'),
+    quantity: 1,
+    price: purchaseValue,
+    value: purchaseValue,
+    currency: 'BRL',
+  });
+}
+
 // Personalize with name
 if (name) {
   const firstName = decodeURIComponent(name).split(' ')[0];
@@ -211,7 +251,7 @@ const appUrl = `${appBase}?${appParams}`;
 document.getElementById('appLink').href = appUrl;
 
 // Upsell button — replace with Ticto one-click-buy link
-document.getElementById('upsellBtn').href = '#';  // TODO: Replace with Ticto upsell offer link for Guia Anti-Rebote
+// Upsell gerenciado pelo Ticto One Click Buy (data-offer-code='0772BBDD6')
 
 // Upsell countdown timer
 let upsellSeconds = 10 * 60;

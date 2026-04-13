@@ -104,6 +104,26 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   .cta-btn{padding:16px 20px;font-size:16px}
 }
 </style>
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wb9na0qdwu");
+</script>
+<!-- Microsoft Clarity End -->
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SVD3GJPXWG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SVD3GJPXWG');
+</script>
+<!-- Google Analytics 4 End -->
+
 <!-- TikTok Pixel -->
 <script>
 !function (w, d, t) {
@@ -208,6 +228,23 @@ const name = params.get('name') || params.get('first_name') || '';
 const email = params.get('email') || '';
 const phone = params.get('phone') || '';
 const plan = params.get('plan') || params.get('offer') || '';
+
+// Google Analytics 4: Purchase
+if (typeof gtag !== 'undefined') {
+  const gaPlanValues = { essential: 39.90, premium: 67.00 };
+  const gaValue = gaPlanValues[plan] || 67.00;
+  gtag('event', 'purchase', {
+    transaction_id: Date.now().toString(),
+    currency: 'BRL',
+    value: gaValue,
+    items: [{
+      item_id: 'desinx_' + (plan || 'premium'),
+      item_name: 'Protocolo Desinx ' + (plan || 'premium'),
+      price: gaValue,
+      quantity: 1,
+    }]
+  });
+}
 
 // TikTok Pixel: identificar usuário e disparar Purchase
 if (typeof ttq !== 'undefined') {

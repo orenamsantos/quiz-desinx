@@ -1356,6 +1356,26 @@ body::before {
 <!-- Ticto Echo: repasse automático de UTMs para o checkout -->
 <script src="https://echo.ticto.app/ticto-echo.min.js"></script>
 
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wb9na0qdwu");
+</script>
+<!-- Microsoft Clarity End -->
+
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SVD3GJPXWG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SVD3GJPXWG');
+</script>
+<!-- Google Analytics 4 End -->
+
 <!-- TikTok Pixel Base Code -->
 <script>
 !function (w, d, t) {
@@ -1963,15 +1983,33 @@ function trackStep(step) {
   const elapsed = Date.now() - state.stepStartTime;
   console.log(`[Analytics] step=${step.id}, answer=${JSON.stringify(state.answers[step.id])}, time=${elapsed}ms`);
 
+  // ── Google Analytics 4 ──
+  if (typeof gtag !== 'undefined') {
+    // Evento de progresso no quiz — captura cada etapa
+    gtag('event', 'quiz_step_concluido', {
+      step_id: step.id,
+      step_type: step.type,
+      step_phase: step.phase || 0,
+      tempo_segundos: Math.round(elapsed / 1000),
+    });
+
+    // Eventos específicos por etapa — para o funil no GA4
+    if (step.type === 'start')   gtag('event', 'funil_inicio');
+    if (step.id === 'objetivo')  gtag('event', 'funil_objetivo',   { resposta: state.answers['objetivo'] || '' });
+    if (step.id === 'frustracao')gtag('event', 'funil_frustracao', { resposta: state.answers['frustracao'] || '' });
+    if (step.id === 'dados')     gtag('event', 'funil_lead_form');
+    if (step.type === 'result')  gtag('event', 'funil_resultado');
+    if (step.type === 'pricing') gtag('event', 'funil_pricing');
+  }
+
+  // ── TikTok Pixel ──
   if (typeof ttq === 'undefined') return;
 
-  // Evento generico de progresso no quiz
   ttq.track('ClickButton', {
     content_name: 'quiz_step_' + step.id,
     content_type: 'quiz',
   });
 
-  // Chegou na tela de resultado = alto interesse
   if (step.type === 'result') {
     ttq.track('ViewContent', {
       content_name: 'resultado_personalizado',
@@ -1980,7 +2018,6 @@ function trackStep(step) {
     });
   }
 
-  // Chegou na tela de pricing = fundo de funil
   if (step.type === 'pricing') {
     ttq.track('ViewContent', {
       content_name: 'pagina_preco_desinx',
@@ -2702,6 +2739,15 @@ function saveLead() {
   state.userData.whatsapp = itiInstance ? itiInstance.getNumber() : document.getElementById('inputWhatsapp').value;
   console.log('[Lead Captured]', state.userData, state.answers);
 
+  // Google Analytics 4: lead capturado
+  if (typeof gtag !== 'undefined') {
+    gtag('event', 'funil_lead_capturado', {
+      tem_nome: !!state.userData.name,
+      tem_whatsapp: !!state.userData.whatsapp,
+    });
+    gtag('event', 'generate_lead');
+  }
+
   // TikTok Pixel: identificar o lead com dados reais
   if (typeof ttq !== 'undefined') {
     ttq.identify({
@@ -2832,6 +2878,17 @@ function goCheckout() {
   if (params.toString()) url += '?' + params.toString();
 
   console.log('[Checkout]', { plan, url, user: state.userData });
+
+  // Google Analytics 4: clique no checkout
+  if (typeof gtag !== 'undefined') {
+    const gaValues = { essential: 39.90, premium: 67.00 };
+    gtag('event', 'funil_checkout_clicado', { plano: plan });
+    gtag('event', 'begin_checkout', {
+      currency: 'BRL',
+      value: gaValues[plan] || 67.00,
+      items: [{ item_id: 'desinx_' + plan, item_name: 'Protocolo Desinx ' + plan, price: gaValues[plan] || 67.00 }]
+    });
+  }
 
   // TikTok Pixel: dispara InitiateCheckout com dados do plano
   if (typeof ttq !== 'undefined') {

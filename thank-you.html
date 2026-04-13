@@ -203,10 +203,11 @@ if (name) {
 // Build app link with user data
 const appBase = 'https://app-desinx.vercel.app/';
 const appParams = new URLSearchParams();
+appParams.set('token', 'DESINX2024ACCESS'); // token que libera o registro no app
 if (name) appParams.set('name', decodeURIComponent(name));
 if (email) appParams.set('email', decodeURIComponent(email));
 if (plan) appParams.set('plan', decodeURIComponent(plan));
-const appUrl = appParams.toString() ? `${appBase}?${appParams}` : appBase;
+const appUrl = `${appBase}?${appParams}`;
 document.getElementById('appLink').href = appUrl;
 
 // Upsell button — replace with Ticto one-click-buy link

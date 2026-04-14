@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
 
   <!-- Styles -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/css/intlTelInput.css">
+  
   <style>
 /* =============================================
    Protocolo Desinx — Styles
@@ -1354,17 +1354,8 @@ body::before {
 </style>
 
 <!-- Ticto Echo: repasse automático de UTMs para o checkout -->
-<script src="https://echo.ticto.app/ticto-echo.min.js"></script>
+<script defer src="https://echo.ticto.app/ticto-echo.min.js"></script>
 
-<!-- Microsoft Clarity -->
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "wb9na0qdwu");
-</script>
-<!-- Microsoft Clarity End -->
 
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-SVD3GJPXWG"></script>
@@ -1376,17 +1367,6 @@ body::before {
 </script>
 <!-- Google Analytics 4 End -->
 
-<!-- TikTok Pixel Base Code -->
-<script>
-!function (w, d, t) {
-  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
-var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
-;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
-  ttq.load('D58V12JC77UD75S4LAF0');
-  ttq.page();
-}(window, document, 'ttq');
-</script>
-<!-- TikTok Pixel Base Code End -->
 </head>
 <body>
 
@@ -1450,21 +1430,21 @@ function makeAvatar(name, hue) {
 }
 
 const TESTIMONIALS = [
-  { name: 'Camila R.',   age: 34, job: 'analista de marketing, mãe de 2', text: 'Perdi 8kg em 6 semanas sem academia. Meu marido perguntou o que eu estava fazendo de diferente.', stars: 5,   av: 'https://i.pravatar.cc/80?img=1' },
-  { name: 'Patrícia M.', age: 41, job: 'professora',                      text: 'Pela primeira vez em 10 anos, não voltei a engordar. O Protocolo mudou minha relação com a balança.',   stars: 5,   av: 'https://i.pravatar.cc/80?img=5' },
-  { name: 'Fernanda L.', age: 29, job: 'designer freelancer',             text: 'O inchaço sumiu na segunda semana. Minhas calças voltaram a servir.',                                   stars: 5,   av: 'https://i.pravatar.cc/80?img=9' },
-  { name: 'Juliana S.',  age: 37, job: 'advogada',                        text: 'Gastei uma fortuna em nutri e academia. Aqui tive resultado em 3 semanas pagando o preço de um café.',   stars: 5,   av: 'https://i.pravatar.cc/80?img=16' },
-  { name: 'Renata C.',   age: 45, job: 'enfermeira, mãe de 3',            text: 'Com 3 filhos e plantão, eu achava impossível. 15 minutos por dia foi tudo que precisei.',                stars: 5,   av: 'https://i.pravatar.cc/80?img=20' },
-  { name: 'Aline F.',    age: 32, job: 'empreendedora',                   text: 'Eliminei 6kg sem cortar o que amo comer. O segredo é a ordem, não a restrição.',                         stars: 4.5, av: 'https://i.pravatar.cc/80?img=23' },
-  { name: 'Mariana D.',  age: 38, job: 'gerente de RH',                   text: 'Minha energia voltou no dia 4. Parece exagero, mas é real. Eu tinha esquecido como era ter disposição.', stars: 5,   av: 'https://i.pravatar.cc/80?img=25' },
-  { name: 'Beatriz O.',  age: 27, job: 'estudante de medicina',           text: 'Eu estudava emagrecimento e mesmo assim não conseguia. O Protocolo me mostrou o que eu fazia na ordem errada.', stars: 4.5, av: 'https://i.pravatar.cc/80?img=32' },
-  { name: 'Carla T.',    age: 43, job: 'servidora pública',               text: 'Meu metabolismo parecia morto. Na segunda semana eu já sentia diferença na roupa e no espelho.',         stars: 5,   av: 'https://i.pravatar.cc/80?img=36' },
-  { name: 'Débora N.',   age: 31, job: 'fotógrafa',                       text: 'Já tinha tentado 4 apps diferentes. Esse foi o primeiro que eu terminei a primeira semana inteira.',     stars: 4.5, av: 'https://i.pravatar.cc/80?img=38' },
-  { name: 'Larissa P.',  age: 36, job: 'dentista, mãe de 1',              text: 'Perdi a barriga pós-parto que tinha há 2 anos. Minha autoestima voltou junto com as roupas antigas.',    stars: 5,   av: 'https://i.pravatar.cc/80?img=41' },
-  { name: 'Priscila V.', age: 44, job: 'professora de yoga',              text: 'Mesmo como instrutora, eu não conseguia perder peso. O Protocolo completou o que faltava.',              stars: 5,   av: 'https://i.pravatar.cc/80?img=44' },
-  { name: 'Gabriela M.', age: 28, job: 'social media',                    text: 'Minha chefe perguntou se eu fiz lipo. Foram 7kg em 5 semanas. Sem cirurgia, sem sofrimento.',           stars: 5,   av: 'https://i.pravatar.cc/80?img=47' },
-  { name: 'Tatiane R.',  age: 39, job: 'bancária',                        text: 'Eu vivia inchada e cansada. Na primeira fase meu corpo desinflou de um jeito que nunca tinha acontecido.', stars: 4.5, av: 'https://i.pravatar.cc/80?img=48' },
-  { name: 'Sandra K.',   age: 52, job: 'empresária',                      text: 'Com 52 anos eu achei que meu metabolismo tinha aposentado. O Protocolo provou que eu estava errada.',    stars: 5,   av: 'https://i.pravatar.cc/80?img=49' },
+  { name: 'Camila R.',   age: 34, job: 'analista de marketing, mãe de 2', text: 'Perdi 8kg em 6 semanas sem academia. Meu marido perguntou o que eu estava fazendo de diferente.', stars: 5,   av: makeAvatar('Camila R.', 160) },
+  { name: 'Patrícia M.', age: 41, job: 'professora',                      text: 'Pela primeira vez em 10 anos, não voltei a engordar. O Protocolo mudou minha relação com a balança.',   stars: 5,   av: makeAvatar('Patrícia M.', 200) },
+  { name: 'Fernanda L.', age: 29, job: 'designer freelancer',             text: 'O inchaço sumiu na segunda semana. Minhas calças voltaram a servir.',                                   stars: 5,   av: makeAvatar('Fernanda L.', 280) },
+  { name: 'Juliana S.',  age: 37, job: 'advogada',                        text: 'Gastei uma fortuna em nutri e academia. Aqui tive resultado em 3 semanas pagando o preço de um café.',   stars: 5,   av: makeAvatar('Juliana S.', 320) },
+  { name: 'Renata C.',   age: 45, job: 'enfermeira, mãe de 3',            text: 'Com 3 filhos e plantão, eu achava impossível. 15 minutos por dia foi tudo que precisei.',                stars: 5,   av: makeAvatar('Renata C.', 10) },
+  { name: 'Aline F.',    age: 32, job: 'empreendedora',                   text: 'Eliminei 6kg sem cortar o que amo comer. O segredo é a ordem, não a restrição.',                         stars: 4.5, av: makeAvatar('Aline F.', 50) },
+  { name: 'Mariana D.',  age: 38, job: 'gerente de RH',                   text: 'Minha energia voltou no dia 4. Parece exagero, mas é real. Eu tinha esquecido como era ter disposição.', stars: 5,   av: makeAvatar('Mariana D.', 180) },
+  { name: 'Beatriz O.',  age: 27, job: 'estudante de medicina',           text: 'Eu estudava emagrecimento e mesmo assim não conseguia. O Protocolo me mostrou o que eu fazia na ordem errada.', stars: 4.5, av: makeAvatar('Beatriz O.', 260) },
+  { name: 'Carla T.',    age: 43, job: 'servidora pública',               text: 'Meu metabolismo parecia morto. Na segunda semana eu já sentia diferença na roupa e no espelho.',         stars: 5,   av: makeAvatar('Carla T.', 30) },
+  { name: 'Débora N.',   age: 31, job: 'fotógrafa',                       text: 'Já tinha tentado 4 apps diferentes. Esse foi o primeiro que eu terminei a primeira semana inteira.',     stars: 4.5, av: makeAvatar('Débora N.', 140) },
+  { name: 'Larissa P.',  age: 36, job: 'dentista, mãe de 1',              text: 'Perdi a barriga pós-parto que tinha há 2 anos. Minha autoestima voltou junto com as roupas antigas.',    stars: 5,   av: makeAvatar('Larissa P.', 220) },
+  { name: 'Priscila V.', age: 44, job: 'professora de yoga',              text: 'Mesmo como instrutora, eu não conseguia perder peso. O Protocolo completou o que faltava.',              stars: 5,   av: makeAvatar('Priscila V.', 300) },
+  { name: 'Gabriela M.', age: 28, job: 'social media',                    text: 'Minha chefe perguntou se eu fiz lipo. Foram 7kg em 5 semanas. Sem cirurgia, sem sofrimento.',           stars: 5,   av: makeAvatar('Gabriela M.', 80) },
+  { name: 'Tatiane R.',  age: 39, job: 'bancária',                        text: 'Eu vivia inchada e cansada. Na primeira fase meu corpo desinflou de um jeito que nunca tinha acontecido.', stars: 4.5, av: makeAvatar('Tatiane R.', 340) },
+  { name: 'Sandra K.',   age: 52, job: 'empresária',                      text: 'Com 52 anos eu achei que meu metabolismo tinha aposentado. O Protocolo provou que eu estava errada.',    stars: 5,   av: makeAvatar('Sandra K.', 240) },
 ];
 
 function renderStars(rating) {
@@ -2677,6 +2657,15 @@ function bindLead() {
     validateLead();
   });
 
+  // Carrega CSS do intl-tel-input só quando necessário
+  if (!document.getElementById('iti-css')) {
+    const link = document.createElement('link');
+    link.id = 'iti-css';
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/css/intlTelInput.css';
+    document.head.appendChild(link);
+  }
+
   if (window.intlTelInput) {
     itiInstance = window.intlTelInput(inputWpp, {
       initialCountry: "br",
@@ -2737,7 +2726,7 @@ function saveLead() {
 
   state.userData.name = name;
   state.userData.whatsapp = itiInstance ? itiInstance.getNumber() : document.getElementById('inputWhatsapp').value;
-  console.log('[Lead Captured]', state.userData, state.answers);
+
 
   // Google Analytics 4: lead capturado
   if (typeof gtag !== 'undefined') {
@@ -2877,7 +2866,7 @@ function goCheckout() {
   }
   if (params.toString()) url += '?' + params.toString();
 
-  console.log('[Checkout]', { plan, url, user: state.userData });
+
 
   // Google Analytics 4: clique no checkout
   if (typeof gtag !== 'undefined') {
@@ -3009,6 +2998,29 @@ initSocialProof();
 initExitIntent();
 
 </script>
+
+
+<!-- Microsoft Clarity -->
+<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "wb9na0qdwu");
+</script>
+<!-- Microsoft Clarity End -->
+
+<!-- TikTok Pixel Base Code -->
+<script>
+!function (w, d, t) {
+  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
+var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script")
+;n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+  ttq.load('D58V12JC77UD75S4LAF0');
+  ttq.page();
+}(window, document, 'ttq');
+</script>
+<!-- TikTok Pixel Base Code End -->
 
 </body>
 </html>

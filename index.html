@@ -6,12 +6,17 @@
   <title>Desinx</title>
   <meta name="description" content="Descubra por que seu corpo resiste a emagrecer e como inverter isso em 2 minutos.">
 
-  <!-- Fonts -->
+  <!-- Fonts — performance otimizada -->
+  <!-- Preconnect para eliminar latência de DNS/TLS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- DM Sans: fonte principal — carregada normalmente (crítica para o texto do quiz) -->
+  <!-- Playfair Display: apenas para títulos decorativos — carregada sem bloquear render (print trick) -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&display=swap"></noscript>
 
   <!-- Styles -->
-  
   <style>
 /* =============================================
    Protocolo Desinx — Styles
@@ -1356,17 +1361,6 @@ body::before {
 <!-- Ticto Echo: repasse automático de UTMs para o checkout -->
 <script defer src="https://echo.ticto.app/ticto-echo.min.js"></script>
 
-
-<!-- Google Analytics 4 -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SVD3GJPXWG"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-SVD3GJPXWG');
-</script>
-<!-- Google Analytics 4 End -->
-
 </head>
 <body>
 
@@ -1413,7 +1407,6 @@ body::before {
   </div>
 
   <!-- App Logic -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js"></script>
   <script>
 /* =============================================
    Protocolo Desinx — App Logic v2.0
@@ -1431,20 +1424,20 @@ function makeAvatar(name, hue) {
 
 const TESTIMONIALS = [
   { name: 'Camila R.',   age: 34, job: 'analista de marketing, mãe de 2', text: 'Perdi 8kg em 6 semanas sem academia. Meu marido perguntou o que eu estava fazendo de diferente.', stars: 5,   av: makeAvatar('Camila R.', 160) },
-  { name: 'Patrícia M.', age: 41, job: 'professora',                      text: 'Pela primeira vez em 10 anos, não voltei a engordar. O Protocolo mudou minha relação com a balança.',   stars: 5,   av: makeAvatar('Patrícia M.', 200) },
+  { name: 'Patrícia M.', age: 41, job: 'professora',                      text: 'Pela primeira vez em 10 anos, não voltei a engordar. O Protocolo mudou minha relação com a balança.',   stars: 5,   av: makeAvatar('Patrícia M.', 210) },
   { name: 'Fernanda L.', age: 29, job: 'designer freelancer',             text: 'O inchaço sumiu na segunda semana. Minhas calças voltaram a servir.',                                   stars: 5,   av: makeAvatar('Fernanda L.', 280) },
-  { name: 'Juliana S.',  age: 37, job: 'advogada',                        text: 'Gastei uma fortuna em nutri e academia. Aqui tive resultado em 3 semanas pagando o preço de um café.',   stars: 5,   av: makeAvatar('Juliana S.', 320) },
-  { name: 'Renata C.',   age: 45, job: 'enfermeira, mãe de 3',            text: 'Com 3 filhos e plantão, eu achava impossível. 15 minutos por dia foi tudo que precisei.',                stars: 5,   av: makeAvatar('Renata C.', 10) },
-  { name: 'Aline F.',    age: 32, job: 'empreendedora',                   text: 'Eliminei 6kg sem cortar o que amo comer. O segredo é a ordem, não a restrição.',                         stars: 4.5, av: makeAvatar('Aline F.', 50) },
-  { name: 'Mariana D.',  age: 38, job: 'gerente de RH',                   text: 'Minha energia voltou no dia 4. Parece exagero, mas é real. Eu tinha esquecido como era ter disposição.', stars: 5,   av: makeAvatar('Mariana D.', 180) },
-  { name: 'Beatriz O.',  age: 27, job: 'estudante de medicina',           text: 'Eu estudava emagrecimento e mesmo assim não conseguia. O Protocolo me mostrou o que eu fazia na ordem errada.', stars: 4.5, av: makeAvatar('Beatriz O.', 260) },
-  { name: 'Carla T.',    age: 43, job: 'servidora pública',               text: 'Meu metabolismo parecia morto. Na segunda semana eu já sentia diferença na roupa e no espelho.',         stars: 5,   av: makeAvatar('Carla T.', 30) },
-  { name: 'Débora N.',   age: 31, job: 'fotógrafa',                       text: 'Já tinha tentado 4 apps diferentes. Esse foi o primeiro que eu terminei a primeira semana inteira.',     stars: 4.5, av: makeAvatar('Débora N.', 140) },
-  { name: 'Larissa P.',  age: 36, job: 'dentista, mãe de 1',              text: 'Perdi a barriga pós-parto que tinha há 2 anos. Minha autoestima voltou junto com as roupas antigas.',    stars: 5,   av: makeAvatar('Larissa P.', 220) },
-  { name: 'Priscila V.', age: 44, job: 'professora de yoga',              text: 'Mesmo como instrutora, eu não conseguia perder peso. O Protocolo completou o que faltava.',              stars: 5,   av: makeAvatar('Priscila V.', 300) },
-  { name: 'Gabriela M.', age: 28, job: 'social media',                    text: 'Minha chefe perguntou se eu fiz lipo. Foram 7kg em 5 semanas. Sem cirurgia, sem sofrimento.',           stars: 5,   av: makeAvatar('Gabriela M.', 80) },
-  { name: 'Tatiane R.',  age: 39, job: 'bancária',                        text: 'Eu vivia inchada e cansada. Na primeira fase meu corpo desinflou de um jeito que nunca tinha acontecido.', stars: 4.5, av: makeAvatar('Tatiane R.', 340) },
-  { name: 'Sandra K.',   age: 52, job: 'empresária',                      text: 'Com 52 anos eu achei que meu metabolismo tinha aposentado. O Protocolo provou que eu estava errada.',    stars: 5,   av: makeAvatar('Sandra K.', 240) },
+  { name: 'Juliana S.',  age: 37, job: 'advogada',                        text: 'Gastei uma fortuna em nutri e academia. Aqui tive resultado em 3 semanas pagando o preço de um café.',   stars: 5,   av: makeAvatar('Juliana S.', 40) },
+  { name: 'Renata C.',   age: 45, job: 'enfermeira, mãe de 3',            text: 'Com 3 filhos e plantão, eu achava impossível. 15 minutos por dia foi tudo que precisei.',                stars: 5,   av: makeAvatar('Renata C.', 330) },
+  { name: 'Aline F.',    age: 32, job: 'empreendedora',                   text: 'Eliminei 6kg sem cortar o que amo comer. O segredo é a ordem, não a restrição.',                         stars: 4.5, av: makeAvatar('Aline F.', 190) },
+  { name: 'Mariana D.',  age: 38, job: 'gerente de RH',                   text: 'Minha energia voltou no dia 4. Parece exagero, mas é real. Eu tinha esquecido como era ter disposição.', stars: 5,   av: makeAvatar('Mariana D.', 240) },
+  { name: 'Beatriz O.',  age: 27, job: 'estudante de medicina',           text: 'Eu estudava emagrecimento e mesmo assim não conseguia. O Protocolo me mostrou o que eu fazia na ordem errada.', stars: 4.5, av: makeAvatar('Beatriz O.', 300) },
+  { name: 'Carla T.',    age: 43, job: 'servidora pública',               text: 'Meu metabolismo parecia morto. Na segunda semana eu já sentia diferença na roupa e no espelho.',         stars: 5,   av: makeAvatar('Carla T.', 20) },
+  { name: 'Débora N.',   age: 31, job: 'fotógrafa',                       text: 'Já tinha tentado 4 apps diferentes. Esse foi o primeiro que eu terminei a primeira semana inteira.',     stars: 4.5, av: makeAvatar('Débora N.', 350) },
+  { name: 'Larissa P.',  age: 36, job: 'dentista, mãe de 1',              text: 'Perdi a barriga pós-parto que tinha há 2 anos. Minha autoestima voltou junto com as roupas antigas.',    stars: 5,   av: makeAvatar('Larissa P.', 130) },
+  { name: 'Priscila V.', age: 44, job: 'professora de yoga',              text: 'Mesmo como instrutora, eu não conseguia perder peso. O Protocolo completou o que faltava.',              stars: 5,   av: makeAvatar('Priscila V.', 60) },
+  { name: 'Gabriela M.', age: 28, job: 'social media',                    text: 'Minha chefe perguntou se eu fiz lipo. Foram 7kg em 5 semanas. Sem cirurgia, sem sofrimento.',           stars: 5,   av: makeAvatar('Gabriela M.', 170) },
+  { name: 'Tatiane R.',  age: 39, job: 'bancária',                        text: 'Eu vivia inchada e cansada. Na primeira fase meu corpo desinflou de um jeito que nunca tinha acontecido.', stars: 4.5, av: makeAvatar('Tatiane R.', 220) },
+  { name: 'Sandra K.',   age: 52, job: 'empresária',                      text: 'Com 52 anos eu achei que meu metabolismo tinha aposentado. O Protocolo provou que eu estava errada.',    stars: 5,   av: makeAvatar('Sandra K.', 310) },
 ];
 
 function renderStars(rating) {
@@ -1961,7 +1954,6 @@ function autoScrollToCTA() {
 
 function trackStep(step) {
   const elapsed = Date.now() - state.stepStartTime;
-  console.log(`[Analytics] step=${step.id}, answer=${JSON.stringify(state.answers[step.id])}, time=${elapsed}ms`);
 
   // ── Google Analytics 4 ──
   if (typeof gtag !== 'undefined') {
@@ -2646,6 +2638,25 @@ function saveTarget() {
 
 let itiInstance = null;
 
+function loadItiResources(callback) {
+  if (window.intlTelInput) { callback(); return; }
+
+  // CSS lazy
+  if (!document.getElementById('iti-css')) {
+    const link = document.createElement('link');
+    link.id = 'iti-css';
+    link.rel = 'stylesheet';
+    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/css/intlTelInput.css';
+    document.head.appendChild(link);
+  }
+
+  // JS lazy
+  const script = document.createElement('script');
+  script.src = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/intlTelInput.min.js';
+  script.onload = callback;
+  document.body.appendChild(script);
+}
+
 function bindLead() {
   const inputName = document.getElementById('inputName');
   const inputWpp = document.getElementById('inputWhatsapp');
@@ -2657,23 +2668,16 @@ function bindLead() {
     validateLead();
   });
 
-  // Carrega CSS do intl-tel-input só quando necessário
-  if (!document.getElementById('iti-css')) {
-    const link = document.createElement('link');
-    link.id = 'iti-css';
-    link.rel = 'stylesheet';
-    link.href = 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/css/intlTelInput.css';
-    document.head.appendChild(link);
-  }
-
-  if (window.intlTelInput) {
-    itiInstance = window.intlTelInput(inputWpp, {
-      initialCountry: "br",
-      preferredCountries: ["br", "pt", "us"],
-      separateDialCode: true,
-      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js",
-    });
-  }
+  loadItiResources(() => {
+    if (window.intlTelInput && document.getElementById('inputWhatsapp')) {
+      itiInstance = window.intlTelInput(inputWpp, {
+        initialCountry: "br",
+        preferredCountries: ["br", "pt", "us"],
+        separateDialCode: true,
+        utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/18.2.1/js/utils.js",
+      });
+    }
+  });
 
   inputWpp.addEventListener('input', () => {
     inputWpp.value = inputWpp.value.replace(/\D/g, '');
@@ -2726,7 +2730,6 @@ function saveLead() {
 
   state.userData.name = name;
   state.userData.whatsapp = itiInstance ? itiInstance.getNumber() : document.getElementById('inputWhatsapp').value;
-
 
   // Google Analytics 4: lead capturado
   if (typeof gtag !== 'undefined') {
@@ -2848,8 +2851,6 @@ function goCheckout() {
   };
 
   let url = checkoutLinks[plan] || checkoutLinks.premium;
-
-  // Preenchimento automático dos dados do cliente na Ticto
   const params = new URLSearchParams();
   if (state.userData.name) {
     params.set('name', state.userData.name);
@@ -2865,8 +2866,6 @@ function goCheckout() {
     params.set('customer_email', state.userData.email);
   }
   if (params.toString()) url += '?' + params.toString();
-
-
 
   // Google Analytics 4: clique no checkout
   if (typeof gtag !== 'undefined') {
@@ -2999,8 +2998,16 @@ initExitIntent();
 
 </script>
 
+<!-- Google Analytics 4 — movido para o final do body -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SVD3GJPXWG"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-SVD3GJPXWG');
+</script>
 
-<!-- Microsoft Clarity -->
+<!-- Microsoft Clarity — movido para o final do body -->
 <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -3008,9 +3015,8 @@ initExitIntent();
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "wb9na0qdwu");
 </script>
-<!-- Microsoft Clarity End -->
 
-<!-- TikTok Pixel Base Code -->
+<!-- TikTok Pixel — movido para o final do body -->
 <script>
 !function (w, d, t) {
   w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(
@@ -3020,7 +3026,6 @@ var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n
   ttq.page();
 }(window, document, 'ttq');
 </script>
-<!-- TikTok Pixel Base Code End -->
 
 </body>
 </html>

@@ -455,11 +455,29 @@ function renderStep(idx) {
     });
   }
 
+  if (step.type === 'result' && typeof fbq !== 'undefined') {
+    fbq('track', 'ViewContent', {
+      content_name: 'resultado_personalizado',
+      content_type: 'product',
+      content_ids: ['desinx_resultado'],
+    });
+  }
+
   if (step.type === 'pricing' && typeof ttq !== 'undefined') {
     ttq.track('ViewContent', {
       content_name: 'pagina_preco_desinx',
       content_type: 'product',
       content_id: 'desinx_pricing',
+    });
+  }
+
+  if (step.type === 'pricing' && typeof fbq !== 'undefined') {
+    fbq('track', 'ViewContent', {
+      content_name: 'pagina_preco_desinx',
+      content_type: 'product',
+      content_ids: ['desinx_pricing'],
+      currency: 'BRL',
+      value: 67.00,
     });
   }
 
@@ -1286,6 +1304,13 @@ function saveLead() {
     });
   }
 
+  if (typeof fbq !== 'undefined') {
+    fbq('track', 'Lead', {
+      content_name: 'lead_capturado_desinx',
+      content_category: 'quiz_lead',
+    });
+  }
+
   nextStep();
 }
 
@@ -1414,6 +1439,18 @@ function goCheckout() {
       quantity: 1,
       price: prices[plan] || 67.00,
       value: prices[plan] || 67.00,
+      currency: 'BRL',
+    });
+  }
+
+  if (typeof fbq !== 'undefined') {
+    const fbPrices = { essential: 39.90, premium: 67.00 };
+    fbq('track', 'InitiateCheckout', {
+      content_name: 'checkout_desinx_' + plan,
+      content_ids: ['desinx_' + plan],
+      content_type: 'product',
+      num_items: 1,
+      value: fbPrices[plan] || 67.00,
       currency: 'BRL',
     });
   }

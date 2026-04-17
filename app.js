@@ -89,32 +89,36 @@ function renderPricingReviews(count = 3) {
   `).join('');
 }
 
+// Versão ativa: prova social (otimizada para Facebook/Instagram)
+const AB_VARIANT = 2;
+
 const HEADLINES = [
-  'Você faz dieta, treina, conta caloria — e a balança <span class="rw" id="rw">não mexe</span>.',
-  'Seu corpo não está contra você. Está <span class="rw" id="rw">travado</span>.',
-  '93% das mulheres que não emagrecem cometem o mesmo <span class="rw" id="rw">erro invisível</span>',
-  'O problema nunca foi disciplina. Foi <span class="rw" id="rw">sequência</span>.',
-  'Existe uma razão biológica pela qual nenhuma dieta funcionou <span class="rw" id="rw">pra você</span>',
+  {
+    h: 'Eu como bem, me esforço,<br>e a balança <span class="rw">não mexe</span>.',
+    sub: 'Isso não é falta de disciplina. É um bloqueio metabólico que 91% das mulheres têm e nenhum nutricionista explica. Descubra o seu em 2 minutos.',
+  },
+  {
+    h: 'Por que seu corpo <span class="rw">resiste</span><br>mesmo quando você se esforça?',
+    sub: 'Existe um bloqueio metabólico que 93% das mulheres têm e não sabem. Descubra o seu em 2 minutos.',
+  },
+  {
+    h: '12.847 mulheres descobriram o motivo pelo qual nenhuma dieta funcionou <span class="rw">pra elas</span>',
+    sub: 'Um teste gratuito de 7 perguntas identificou o bloqueio metabólico exato de cada uma. Resultado em 2 minutos — sem cadastro.',
+  },
+  {
+    h: 'Não é fraqueza.<br>Não é falta de força de vontade.<br>É um <span class="rw">bloqueio</span>.',
+    sub: 'Seu corpo está travado num modo de sobrevivência. 7 perguntas mostram como sair dele.',
+  },
 ];
 
-const SUBHEADLINES = [
-  'Responda 7 perguntas em 2 minutos. Descubra o que realmente trava seu metabolismo — e como destravar ainda essa semana.',
-  'Mais de 12.847 mulheres já descobriram o bloqueio que nenhum nutricionista encontrou. Faça o teste gratuito.',
-  'Seu corpo está pedindo uma coisa. Você está dando outra. Esse teste revela exatamente o quê — em 2 minutos.',
-  'Antes de tentar mais uma dieta, descubra por que as anteriores falharam. Teste gratuito de 2 minutos.',
-  'Não é falta de esforço. É um bloqueio metabólico que 93% das mulheres nem sabem que têm. Descubra o seu.',
+const ROTATING_WORDS = [
+  ['não mexe', 'não responde', 'resiste'],
+  ['resiste', 'trava', 'não responde'],
+  ['pra elas', 'pra você também', 'na vida delas'],
+  ['bloqueio', 'travamento', 'modo de defesa'],
 ];
 
-const ROTATING_WORDS = {
-  0: ['não mexe', 'trava no mesmo número', 'não responde'],
-  1: ['travado', 'em modo de proteção', 'adormecido'],
-  2: ['erro invisível', 'bloqueio oculto', 'sabotador silencioso'],
-  3: ['sequência', 'a ordem que você faz', 'o passo que você pula'],
-  4: ['pra você', 'até agora', 'sozinha'],
-};
-
-const headlineIndex = Math.floor(Math.random() * HEADLINES.length);
-const subheadlineIndex = Math.floor(Math.random() * SUBHEADLINES.length);
+const headlineIndex = AB_VARIANT;
 
 const DYNAMIC_FEEDBACK = {
   'objetivo': {
@@ -601,48 +605,57 @@ function showToast(msg) {
 }
 
 function renderStart() {
+  const v = HEADLINES[headlineIndex];
   return `
     <div class="start-hero">
-      <div class="logo-wrap">
-        <img src="logo.webp" alt="Desinx"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-        <div class="logo-text" style="display:none">DESIN<span>X</span></div>
+      <div class="start-brand">DESINX</div>
+
+      <div class="start-social-proof">
+        <div class="start-avatars">
+          <span class="start-av" style="background:hsl(160,40%,75%)">C</span>
+          <span class="start-av" style="background:hsl(210,40%,75%)">P</span>
+          <span class="start-av" style="background:hsl(280,40%,75%)">F</span>
+          <span class="start-av" style="background:hsl(40,40%,75%)">J</span>
+          <span class="start-av" style="background:hsl(330,40%,75%)">R</span>
+        </div>
+        <p class="start-proof-text"><strong>12.847 mulheres</strong> já fizeram esse teste esse mês</p>
       </div>
 
-      <h1 class="start-headline">${HEADLINES[headlineIndex]}</h1>
-      <p class="start-sub">${SUBHEADLINES[subheadlineIndex]}</p>
+      <h1 class="start-headline" id="startHeadline">${v.h}</h1>
+      <p class="start-sub">${v.sub}</p>
 
-      <button class="btn-primary" id="btnStart" onclick="nextStep()">
-        Descobrir o que trava meu corpo →
+      <button class="btn-primary btn-start-pulse" id="btnStart" onclick="nextStep()">
+        Fazer o teste gratuito →
       </button>
 
-      <p style="font-size:12px;color:var(--text-light);text-align:center;margin-top:12px">
-        ⏱ Leva menos de 2 minutos · 100% gratuito · Sem cadastro
-      </p>
-
-      <div class="legal-wrap" style="margin-top:8px">
-        <p style="font-size:11px;color:var(--text-light);text-align:center">
-          Ao continuar, você concorda com os <a href="https://inverta.app/termos" target="_blank" rel="noopener noreferrer">Termos de Uso</a> e <a href="https://inverta.app/privacidade" target="_blank" rel="noopener noreferrer">Política de Privacidade</a>.
-        </p>
+      <div class="start-trust">
+        <span>⏱ 2 min</span>
+        <span>·</span>
+        <span>gratuito</span>
+        <span>·</span>
+        <span>sem cadastro</span>
       </div>
+
+      <p class="start-legal">
+        Ao continuar, você aceita os <a href="https://inverta.app/termos" target="_blank" rel="noopener noreferrer">Termos</a> e <a href="https://inverta.app/privacidade" target="_blank" rel="noopener noreferrer">Privacidade</a>.
+      </p>
     </div>
   `;
 }
 
 function bindStart() {
-  const words = ROTATING_WORDS[headlineIndex] || ['não mexe', 'trava', 'resiste'];
+  const words = ROTATING_WORDS[headlineIndex] || ['nada muda', 'resiste', 'não responde'];
   let wordIdx = 0;
-  const el = document.getElementById('rw');
+  const el = document.querySelector('#startHeadline .rw');
   if (!el) return;
-
   setInterval(() => {
     el.style.opacity = '0';
     setTimeout(() => {
       wordIdx = (wordIdx + 1) % words.length;
       el.textContent = words[wordIdx];
       el.style.opacity = '1';
-    }, 300);
-  }, 3000);
+    }, 250);
+  }, 2500);
 }
 
 function renderSingle(step) {

@@ -9,18 +9,20 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" as="style" onload="this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"></noscript>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" media="print" onload="this.media='all'">
+<link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" as="style" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
 <link rel="stylesheet" href="styles.css">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--primary:#0A7B83;--bg:#FAF8F5;--text:#2D2D2D;--font-body:'DM Sans',system-ui,sans-serif}
 body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh;-webkit-font-smoothing:antialiased}
 .quiz-container{max-width:520px;margin:0 auto;padding:20px 16px;min-height:100vh;display:flex;flex-direction:column}
+.progress-bar{display:flex;gap:4px;margin-bottom:32px;padding:0 4px;opacity:0}
+.progress-bar.visible{opacity:1}
+#stepsContainer{flex:1}
 .exit-modal{display:none}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(100px);z-index:50}
-
-/* First step */
-.start-hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 0 24px;gap:0}
+.start-hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:32px 0 24px}
 .start-brand{font-size:13px;font-weight:700;letter-spacing:3px;color:#0A7B83;margin-bottom:20px}
 .start-social-proof{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid #e5e7eb;border-radius:50px;padding:6px 14px 6px 8px;margin-bottom:22px}
 .start-avatars{display:flex}
@@ -31,6 +33,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 .start-headline{font-family:'Playfair Display',Georgia,serif;font-size:clamp(26px,6vw,34px);font-weight:700;line-height:1.2;color:#1a1a1a;margin-bottom:14px}
 .start-headline .rw{color:#0A7B83;transition:opacity 0.25s}
 .start-sub{font-size:15px;color:#6b7280;line-height:1.65;margin-bottom:28px;max-width:380px}
+.btn-primary{width:100%;padding:16px;background:var(--primary);color:#fff;font-size:16px;font-weight:700;border:none;border-radius:12px;cursor:pointer;font-family:var(--font-body)}
 .btn-start-pulse{animation:startPulse 2.5s ease-in-out infinite;margin-bottom:14px}
 @keyframes startPulse{0%,100%{box-shadow:0 0 0 0 rgba(10,123,131,0.3)}50%{box-shadow:0 0 0 10px rgba(10,123,131,0)}}
 .start-trust{display:flex;align-items:center;gap:8px;font-size:12px;color:#9ca3af;margin-bottom:10px}
@@ -40,41 +43,65 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
 </head>
 <body>
 <div class="quiz-container" id="app">
-<div class="progress-bar" id="progressBar">
-<div class="progress-phase" data-phase="1"><div class="progress-phase-label">Diagnóstico</div><div class="progress-phase-bar"></div></div>
-<div class="progress-phase" data-phase="2"><div class="progress-phase-label">Histórico</div><div class="progress-phase-bar"></div></div>
-<div class="progress-phase" data-phase="3"><div class="progress-phase-label">Calibração</div><div class="progress-phase-bar"></div></div>
-<div class="progress-phase" data-phase="4"><div class="progress-phase-label">Perfil</div><div class="progress-phase-bar"></div></div>
-</div>
-<div id="stepsContainer"></div>
+  <div class="progress-bar" id="progressBar">
+    <div class="progress-phase" data-phase="1"><div class="progress-phase-label">Diagnóstico</div><div class="progress-phase-bar"></div></div>
+    <div class="progress-phase" data-phase="2"><div class="progress-phase-label">Histórico</div><div class="progress-phase-bar"></div></div>
+    <div class="progress-phase" data-phase="3"><div class="progress-phase-label">Calibração</div><div class="progress-phase-bar"></div></div>
+    <div class="progress-phase" data-phase="4"><div class="progress-phase-label">Perfil</div><div class="progress-phase-bar"></div></div>
+  </div>
+  <div id="stepsContainer">
+    <div class="step active" id="prerenderedStart">
+      <div class="start-hero">
+        <div class="start-brand">DESINX</div>
+        <div class="start-social-proof">
+          <div class="start-avatars">
+            <span class="start-av" style="background:hsl(160,40%,75%)">C</span>
+            <span class="start-av" style="background:hsl(210,40%,75%)">P</span>
+            <span class="start-av" style="background:hsl(280,40%,75%)">F</span>
+            <span class="start-av" style="background:hsl(40,40%,75%)">J</span>
+            <span class="start-av" style="background:hsl(330,40%,75%)">R</span>
+          </div>
+          <p class="start-proof-text"><strong>12.847 mulheres</strong> já fizeram esse teste esse mês</p>
+        </div>
+        <h1 class="start-headline" id="startHeadline">12.847 mulheres descobriram o motivo pelo qual nenhuma dieta funcionou <span class="rw">pra elas</span></h1>
+        <p class="start-sub">Um teste gratuito de 7 perguntas identificou o bloqueio metabólico exato de cada uma. Resultado em 2 minutos — sem cadastro.</p>
+        <button class="btn-primary btn-start-pulse" id="btnStart">Fazer o teste gratuito →</button>
+        <div class="start-trust"><span>⏱ 2 min</span><span>·</span><span>gratuito</span><span>·</span><span>sem cadastro</span></div>
+        <p class="start-legal">Ao continuar, você aceita os <a href="https://inverta.app/termos" target="_blank" rel="noopener">Termos</a> e <a href="https://inverta.app/privacidade" target="_blank" rel="noopener">Privacidade</a>.</p>
+      </div>
+    </div>
+  </div>
 </div>
 <div class="toast" id="toast"></div>
 <div class="exit-modal" id="exitModal">
-<div class="exit-modal-content">
-<button class="exit-close" onclick="closeExitModal()">×</button>
-<div class="exit-icon">🎁</div>
-<h2 class="exit-title">Você já está na metade da análise.</h2>
-<p class="exit-desc">Faltam poucas perguntas pra montar seu protocolo personalizado. Se sair agora, vai precisar <strong>recomeçar do zero</strong>.</p>
-<button class="btn-primary" onclick="acceptExitOffer()">Continuar minha análise →</button>
-<button class="btn-text" onclick="closeExitModal()">Não, prefiro sair</button>
-</div>
+  <div class="exit-modal-content">
+    <button class="exit-close" onclick="closeExitModal()">×</button>
+    <div class="exit-icon">🎁</div>
+    <h2 class="exit-title">Você já está na metade da análise.</h2>
+    <p class="exit-desc">Faltam poucas perguntas pra montar seu protocolo personalizado. Se sair agora, vai precisar <strong>recomeçar do zero</strong>.</p>
+    <button class="btn-primary" onclick="acceptExitOffer()">Continuar minha análise →</button>
+    <button class="btn-text" onclick="closeExitModal()">Não, prefiro sair</button>
+  </div>
 </div>
 <script defer src="app.js"></script>
 <script defer src="https://echo.ticto.app/ticto-echo.min.js"></script>
 <script>
-window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-SVD3GJPXWG');
-</script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SVD3GJPXWG"></script>
-<script>
-(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,"clarity","script","wb9na0qdwu");
-</script>
-<script>
-!function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};ttq.load('D58V12JC77UD75S4LAF0');ttq.page()}(window,document,'ttq');
-</script>
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','3821122158195597');
-fbq('track','PageView');
+(function(){
+  function loadTracking(){
+    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-SVD3GJPXWG';document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}window.gtag=gtag;gtag('js',new Date());gtag('config','G-SVD3GJPXWG');
+    (function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src='https://www.clarity.ms/tag/'+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y)})(window,document,'clarity','script','wb9na0qdwu');
+    !function(w,d,t){w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie","holdConsent","revokeConsent","grantConsent"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var r="https://analytics.tiktok.com/i18n/pixel/events.js",o=n&&n.partner;ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=r,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=r+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};ttq.load('D58V12JC77UD75S4LAF0');ttq.page()}(window,document,'ttq');
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init','3821122158195597');fbq('track','PageView');
+  }
+  var loaded=false;
+  function once(){if(loaded)return;loaded=true;loadTracking()}
+  setTimeout(once,2000);
+  document.addEventListener('scroll',once,{once:true,passive:true});
+  document.addEventListener('touchstart',once,{once:true,passive:true});
+  document.addEventListener('click',once,{once:true,passive:true});
+})();
 </script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=3821122158195597&ev=PageView&noscript=1"/></noscript>
 </body>

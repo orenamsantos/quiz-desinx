@@ -425,6 +425,14 @@ function renderStep(idx) {
 
   updateProgress(step.phase);
 
+  // Se o primeiro step já está pré-renderizado no HTML, não substitui (evita CLS)
+  if (step.type === 'start' && document.getElementById('prerenderedStart')) {
+    bindStart();
+    const btn = document.getElementById('btnStart');
+    if (btn) btn.onclick = nextStep;
+    return;
+  }
+
   let html = '';
   switch (step.type) {
     case 'start':      html = renderStart(); break;

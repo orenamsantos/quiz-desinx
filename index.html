@@ -5,13 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Desinx</title>
 <meta name="description" content="Descubra por que seu corpo resiste a emagrecer e como inverter isso em 2 minutos.">
+<!-- Resource hints for 3rd-party origins -->
+<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel="dns-prefetch" href="https://www.google-analytics.com">
+<link rel="dns-prefetch" href="https://www.clarity.ms">
+<link rel="dns-prefetch" href="https://analytics.tiktok.com">
+<link rel="dns-prefetch" href="https://connect.facebook.net">
+<link rel="dns-prefetch" href="https://echo.ticto.app">
+<!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" as="style" onload="this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"></noscript>
 <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" as="style" onload="this.rel='stylesheet'">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
-<link rel="stylesheet" href="styles.css">
+<!-- Non-blocking styles: critical CSS is inlined below; full CSS loads async -->
+<link rel="preload" href="styles.css" as="style" onload="this.rel='stylesheet'">
+<noscript><link rel="stylesheet" href="styles.css"></noscript>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--primary:#0A7B83;--bg:#FAF8F5;--text:#2D2D2D;--font-body:'DM Sans',system-ui,sans-serif}
@@ -65,7 +75,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-hei
         </div>
         <h1 class="start-headline" id="startHeadline">12.847 mulheres descobriram o motivo pelo qual nenhuma dieta funcionou <span class="rw">pra elas</span></h1>
         <p class="start-sub">Um teste gratuito de 7 perguntas identificou o bloqueio metabólico exato de cada uma. Resultado em 2 minutos — sem cadastro.</p>
-        <button class="btn-primary btn-start-pulse" id="btnStart">Fazer o teste gratuito →</button>
+        <button class="btn-primary btn-start-pulse" id="btnStart" fetchpriority="high">Fazer o teste gratuito →</button>
         <div class="start-trust"><span>⏱ 2 min</span><span>·</span><span>gratuito</span><span>·</span><span>sem cadastro</span></div>
         <p class="start-legal">Ao continuar, você aceita os <a href="https://inverta.app/termos" target="_blank" rel="noopener">Termos</a> e <a href="https://inverta.app/privacidade" target="_blank" rel="noopener">Privacidade</a>.</p>
       </div>
